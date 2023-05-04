@@ -1,3 +1,11 @@
+CREATE TABLE Piani(
+    Id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(32) NOT NULL,
+    Valore int(6) NOT NULL,
+    Prezzo float(10) NOT NULL,
+    Descrizione VARCHAR(400) NOT NULL
+);
+
 CREATE TABLE Utenti(
     Id int(18) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(32) NOT NULL,
@@ -7,9 +15,10 @@ CREATE TABLE Utenti(
     Nazione VARCHAR(64) NOT NULL,
     Città VARCHAR(64) NOT NULL,
     Indirizzo VARCHAR(128) NOT NULL,
-    Id_piano int(5) NOT NULL FOREIGN KEY REFERENCES Piani(Id),
+    Id_piano int(5) NOT NULL,
     Id_palestra int(18),
-    Digiuno_intermittente BOOLEAN NOT NULL
+    Digiuno_intermittente BOOLEAN NOT NULL,
+    FOREIGN KEY (Id_piano) REFERENCES Piani(Id)
 );
 
 CREATE TABLE Staff_Type(
@@ -17,16 +26,9 @@ CREATE TABLE Staff_Type(
     Tipo VARCHAR(16) NOT NULL
 );
 
-CREATE TABLE Palestre(
-    Id int(18) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(54) NOT NULL,
-    Id_staff int(18) NOT NULL FOREIGN KEY REFERENCES Staff(Id),
-    Indirizzo VARCHAR(128) NOT NULL
-);
-
 CREATE TABLE Esercizi_Custom(
     Id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
+    Id_utente int(18) NOT NULL,
     Nome VARCHAR(64) NOT NULL,
     Descrizione VARCHAR(255) NOT NULL,
     Procedimento VARCHAR(480) NOT NULL,
@@ -36,28 +38,40 @@ CREATE TABLE Esercizi_Custom(
     Difficoltà int(4) NOT NULL,
     Consumo int(11) NOT NULL,
     Target VARCHAR(255) NOT NULL,
-    Privato BOOLEAN NOT NULL
-);
-
-CREATE TABLE Piani(
-    Id int(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(32) NOT NULL,
-    Valore int(6) NOT NULL,
-    Prezzo float(10) NOT NULL,
-    Descrizione VARCHAR(400) NOT NULL
+    Privato BOOLEAN NOT NULL,
+    FOREIGN KEY (Id_utente) REFERENCES Utenti(Id)
 );
 
 CREATE TABLE Staff(
     Id int(18) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
-    Id_tipo int(5) NOT NULL FOREIGN KEY REFERENCES Staff_Type(Id)
+    Id_utente int(18) NOT NULL,
+    Id_tipo int(5) NOT NULL,
+    FOREIGN KEY (Id_tipo) REFERENCES Staff_Type(Id),
+    FOREIGN KEY (Id_utente) REFERENCES Utenti(Id)
+);
+
+CREATE TABLE Palestre(
+    Id int(18) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(54) NOT NULL,
+    Id_staff int(18) NOT NULL, 
+    Indirizzo VARCHAR(128) NOT NULL,
+    FOREIGN KEY (Id_staff) REFERENCES Staff(Id)
+);
+
+CREATE TABLE Records(
+    Id int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(64) NOT NULL,
+    Obbiettivo VARCHAR(200) NOT NULL,
+    Difficoltà int(4) NOT NULL
 );
 
 CREATE TABLE Data_Record(
     Id int(22) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_record int(8) NOT NULL FOREIGN KEY REFERENCES Records(Id),
-    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
-    Nome VARCHAR(128) NOT NULL
+    Id_record int(8) NOT NULL,
+    Id_utente int(18) NOT NULL,
+    Nome VARCHAR(128) NOT NULL,
+    FOREIGN KEY (Id_record) REFERENCES Records(Id),
+    FOREIGN KEY (Id_utente) REFERENCES Utenti(Id)
 );
 
 CREATE TABLE Permessi(
@@ -84,15 +98,9 @@ CREATE TABLE Logger(
     Message VARCHAR(255) NOT NULL,
     Scopo VARCHAR(64) NOT NULL,
     Giorno DATETIME NOT NULL,
-    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
-    Valore int(3) NOT NULL
-);
-
-CREATE TABLE Records(
-    Id int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(64) NOT NULL,
-    Obbiettivo VARCHAR(200) NOT NULL,
-    Difficoltà int(4) NOT NULL
+    Id_utente int(18) NOT NULL,
+    Valore int(3) NOT NULL,
+    FOREIGN KEY (Id_utente) REFERENCES Utenti(Id)
 );
 
 CREATE TABLE Messaggi(
@@ -101,21 +109,25 @@ CREATE TABLE Messaggi(
     Giorno DATETIME NOT NULL,
     Mittente int(18) NOT NULL,
     Destinatario int(18) NOT NULL,
-    Visualizzato BOOLEAN NOT NULL
+    Visualizzato BOOLEAN NOT NULL,
+    FOREIGN KEY (Destinatario) REFERENCES Utenti(Id),
+    FOREIGN KEY (Mittente) REFERENCES Utenti(Id)
 );
 
 CREATE TABLE Alimentazioni(
     Id int(18) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
+    Id_utente int(18) NOT NULL,
     Lista_alimenti VARCHAR(500) NOT NULL,
-    Giorno DATETIME NOT NULL
+    Giorno DATETIME NOT NULL,
+    FOREIGN KEY (Id_utente) REFERENCES Utenti(Id)
 );
 
 CREATE TABLE Schede(
     Id int(26) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
+    Id_utente int(18) NOT NULL,
     Esercizi VARCHAR(320) NOT NULL,
-    Esercizi_custom VARCHAR(320) NOT NULL
+    Esercizi_custom VARCHAR(320) NOT NULL,
+    FOREIGN KEY (Id_utente) REFERENCES Utenti(Id)
 );
 
 CREATE TABLE Alimenti(
