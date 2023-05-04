@@ -7,8 +7,8 @@ CREATE TABLE Utenti(
     Nazione VARCHAR(64) NOT NULL,
     Città VARCHAR(64) NOT NULL,
     Indirizzo VARCHAR(128) NOT NULL,
-    Id_piano int(5) NOT NULL,
-    Id_palestra int(18) NOT NULL,
+    Id_piano int(5) NOT NULL FOREIGN KEY REFERENCES Piani(Id),
+    Id_palestra int(18),
     Digiuno_intermittente BOOLEAN NOT NULL
 );
 
@@ -20,13 +20,13 @@ CREATE TABLE Staff_Type(
 CREATE TABLE Palestre(
     Id int(18) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(54) NOT NULL,
-    Id_staff int(18) NOT NULL,
+    Id_staff int(18) NOT NULL FOREIGN KEY REFERENCES Staff(Id),
     Indirizzo VARCHAR(128) NOT NULL
 );
 
 CREATE TABLE Esercizi_Custom(
     Id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_utente int(18) NOT NULL,
+    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
     Nome VARCHAR(64) NOT NULL,
     Descrizione VARCHAR(255) NOT NULL,
     Procedimento VARCHAR(480) NOT NULL,
@@ -49,15 +49,14 @@ CREATE TABLE Piani(
 
 CREATE TABLE Staff(
     Id int(18) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_utente int(18) NOT NULL,
-    Id_palestra int(18) NOT NULL,
-    Id_tipo int(5) NOT NULL
+    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
+    Id_tipo int(5) NOT NULL FOREIGN KEY REFERENCES Staff_Type(Id)
 );
 
 CREATE TABLE Data_Record(
     Id int(22) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_record int(8) NOT NULL,
-    Id_utente int(18) NOT NULL,
+    Id_record int(8) NOT NULL FOREIGN KEY REFERENCES Records(Id),
+    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
     Nome VARCHAR(128) NOT NULL
 );
 
@@ -85,7 +84,8 @@ CREATE TABLE Logger(
     Message VARCHAR(255) NOT NULL,
     Scopo VARCHAR(64) NOT NULL,
     Giorno DATETIME NOT NULL,
-    Id_utente int(18) NOT NULL
+    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
+    Valore int(3) NOT NULL
 );
 
 CREATE TABLE Records(
@@ -106,14 +106,14 @@ CREATE TABLE Messaggi(
 
 CREATE TABLE Alimentazioni(
     Id int(18) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_utente int(18) NOT NULL,
+    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
     Lista_alimenti VARCHAR(500) NOT NULL,
     Giorno DATETIME NOT NULL
 );
 
 CREATE TABLE Schede(
     Id int(26) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Id_utente int(18) NOT NULL,
+    Id_utente int(18) NOT NULL FOREIGN KEY REFERENCES Utenti(Id),
     Esercizi VARCHAR(320) NOT NULL,
     Esercizi_custom VARCHAR(320) NOT NULL
 );
@@ -134,32 +134,3 @@ CREATE TABLE Alimenti(
     Potassio INT(8) NOT NULL,
     Immagine VARCHAR(64) NOT NULL
 );
-
-ALTER TABLE
-    "Schede" ADD CONSTRAINT "schede_id_utente_foreign" FOREIGN KEY("id_utente") REFERENCES "Utenti"("id");
-ALTER TABLE
-    "Utenti" ADD CONSTRAINT "utenti_id_palestra_foreign" FOREIGN KEY("id_palestra") REFERENCES "Palestre"("id");
-ALTER TABLE
-    "Data_Record" ADD CONSTRAINT "data_record_id_record_foreign" FOREIGN KEY("id_record") REFERENCES "Records"("id");
-ALTER TABLE
-    "Messaggi" ADD CONSTRAINT "messaggi_sender_foreign" FOREIGN KEY("sender") REFERENCES "Utenti"("id");
-ALTER TABLE
-    "Data_Record" ADD CONSTRAINT "data_record_id_utente_foreign" FOREIGN KEY("id_utente") REFERENCES "Utenti"("id");
-ALTER TABLE
-    "Log" ADD CONSTRAINT "log_id_utente_foreign" FOREIGN KEY("id_utente") REFERENCES "Utenti"("id");
-ALTER TABLE
-    "Staff" ADD CONSTRAINT "staff_id_palestra_foreign" FOREIGN KEY("id_palestra") REFERENCES "Palestre"("id");
-ALTER TABLE
-    "Alimentazioni" ADD CONSTRAINT "alimentazioni_id_utente_foreign" FOREIGN KEY("id_utente") REFERENCES "Utenti"("id");
-ALTER TABLE
-    "Staff" ADD CONSTRAINT "staff_id_utente_foreign" FOREIGN KEY("id_utente") REFERENCES "Utenti"("id");
-ALTER TABLE
-    "Esercizi-Custom" ADD CONSTRAINT "esercizi_custom_id_utente_foreign" FOREIGN KEY("id_utente") REFERENCES "Utenti"("id");
-ALTER TABLE
-    "Messaggi" ADD CONSTRAINT "messaggi_receiver_foreign" FOREIGN KEY("receiver") REFERENCES "Utenti"("id");
-ALTER TABLE
-    "Staff" ADD CONSTRAINT "staff_tipo_foreign" FOREIGN KEY("tipo") REFERENCES "Staff-Type"("id");
-ALTER TABLE
-    "Palestre" ADD CONSTRAINT "palestre_id_staff_foreign" FOREIGN KEY("id_staff") REFERENCES "Staff"("id");
-ALTER TABLE
-    "Utenti" ADD CONSTRAINT "utenti_id_piano_foreign" FOREIGN KEY("id_piano") REFERENCES "Piani"("id");
