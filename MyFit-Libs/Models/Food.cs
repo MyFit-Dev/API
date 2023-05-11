@@ -14,7 +14,7 @@ namespace MyFit_Libs.Models
 
         public string? Description { get; set;}
 
-        public string Weight { get; set;}
+        public int Weight { get; set;}
 
         public byte Calories { get; set;}
 
