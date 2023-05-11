@@ -15,11 +15,11 @@ public class User {
 
     public string Mail { get; set;}
     
-    public string State { get; set;}
-
-    public string City { get; set;}
-
-    public string Address { get; set;}
+    public string State { get; set; }
+    public string City { get; set; }
+    public string Street { get; set; }
+    public int CivicNumber { get; set; }
+    public int CAP { get; set; }
 
     public int IdPlan { get; set;}
 
@@ -27,8 +27,22 @@ public class User {
 
     public bool IntermittentFasting { get; set;}
 
+    public User(string name, string surname, string mail, string state, string city, string street, int civicNumber, int cAP, int idPlan, int idGym, bool intermittentFasting)
+    {
+        Name = name;
+        Surname = surname;
+        Mail = mail;
+        State = state;
+        City = city;
+        Street = street;
+        CivicNumber = civicNumber;
+        CAP = cAP;
+        IdPlan = idPlan;
+        IdGym = idGym;
+        IntermittentFasting = intermittentFasting;
+    }
 
-    public User(long id, string name, string surname, string mail, string state, string city, string address, int idPlan, int idGym, bool intermittentFasting)
+    public User(long id, string name, string surname, string mail, string state, string city, string street, int civicNumber, int cAP, int idPlan, int idGym, bool intermittentFasting)
     {
         Id = id;
         Name = name;
@@ -36,23 +50,12 @@ public class User {
         Mail = mail;
         State = state;
         City = city;
-        Address = address;
+        Street = street;
+        CivicNumber = civicNumber;
+        CAP = cAP;
         IdPlan = idPlan;
         IdGym = idGym;
         IntermittentFasting = intermittentFasting;
     }
 
-    public User(string name, string surname, string mail, string state, string city, string address, int idPlan, int idGym, bool intermittentFasting)
-    {
-        Name = name;
-        Surname = surname;
-        Mail = mail;
-        State = state;
-        City = city;
-        Address = address;
-        IdPlan = idPlan;
-        IdGym = idGym;
-        IntermittentFasting = intermittentFasting;
-    }
-    
 }
