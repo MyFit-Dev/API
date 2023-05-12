@@ -1,5 +1,5 @@
-./MyFit-API/bin
-./MyFit-Libs/bin
+/MyFit-API/bin
+/MyFit-Libs/bin
 
-./MyFit-API/obj
-./MyFit-Libs/obj
+/MyFit-API/obj
+/MyFit-Libs/obj
