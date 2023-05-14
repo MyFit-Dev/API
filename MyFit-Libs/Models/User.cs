@@ -8,23 +8,16 @@ namespace MyFit_Libs.Models;
 public class User {
 
     public long Id { get; set;}
-
     public string Name { get; set;}
-    
     public string Surname { get; set;}
-
     public string Mail { get; set;}
-    
     public string State { get; set; }
     public string City { get; set; }
     public string Street { get; set; }
     public int CivicNumber { get; set; }
     public int CAP { get; set; }
-
     public int IdPlan { get; set;}
-
     public int IdGym { get; set;}
-
     public bool IntermittentFasting { get; set;}
 
     public User(string name, string surname, string mail, string state, string city, string street, int civicNumber, int cAP, int idPlan, int idGym, bool intermittentFasting)

@@ -10,7 +10,7 @@ public class CustomExercise {
     //TODO Creare un Enum inerente ai muscoli / target
 
     public int Id { get; set; }
-    public long IdUtente { get; set; }
+    public long IdUser { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public string Method{ get; set; }
@@ -22,10 +22,10 @@ public class CustomExercise {
     public string Target { get; set; }
     public bool Private { get; set; }
 
-    public CustomExercise(int id, int idUtente, string name, string description, string method, string image, string video, int duration, byte difficulty, int calories, string target, bool privato)
+    public CustomExercise(int id, int idUser, string name, string description, string method, string image, string video, int duration, byte difficulty, int calories, string target, bool privato)
     {
         Id = id;
-        IdUtente = idUtente;
+        IdUser = idUser;
         Name = name;
         Description = description;
         Method = method;
@@ -38,9 +38,9 @@ public class CustomExercise {
         Private = privato;
     }
 
-    public CustomExercise(int idUtente, string name, string description, string method, string image, string video, int duration, byte difficulty, int calories, string target, bool privato)
+    public CustomExercise(int idUser, string name, string description, string method, string image, string video, int duration, byte difficulty, int calories, string target, bool privato)
     {
-        IdUtente = idUtente;
+        IdUser = idUser;
         Name = name;
         Description = description;
         Method = method;
