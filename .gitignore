@@ -1,2 +1,7 @@
 ./MyFit-API/obj/
 ./MyFit-Libs/obj/
+MyFit-API/obj/Debug/net7.0/MyFit-API.pdb
+MyFit-API/obj/
+MyFit-API/bin/
+.vs/MyFit/
+.vs/ProjectEvaluation/
