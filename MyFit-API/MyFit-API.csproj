@@ -16,9 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Sql\" />
     <Folder Include="Database\" />
     <Folder Include="Exceptions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyFit-Libs\MyFit-Libs.csproj" />
   </ItemGroup>
 
 </Project>

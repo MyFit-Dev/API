@@ -4,3 +4,7 @@
 ./MyFit-API/bin/
 .vs/
 .vs/
+MyFit-Libs/obj/
+MyFit-Libs/bin/
+MyFit-API/obj/
+MyFit-API/bin/

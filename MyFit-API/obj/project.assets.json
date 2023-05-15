@@ -265,6 +265,16 @@
             "rid": "win"
           }
         }
+      },
+      "MyFit-Libs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/MyFit-Libs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyFit-Libs.dll": {}
+        }
       }
     }
   },
@@ -952,11 +962,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "MyFit-Libs/1.0.0": {
+      "type": "project",
+      "path": "../MyFit-Libs/MyFit-Libs.csproj",
+      "msbuildProject": "../MyFit-Libs/MyFit-Libs.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "Microsoft.AspNetCore.OpenApi >= 7.0.0",
+      "MyFit-Libs >= 1.0.0",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "System.Data.SqlClient >= 4.8.5"
@@ -988,7 +1004,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\redeg\\Documents\\MyFit-API\\MyFit-Libs\\MyFit-Libs.csproj": {
+              "projectPath": "C:\\Users\\redeg\\Documents\\MyFit-API\\MyFit-Libs\\MyFit-Libs.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
