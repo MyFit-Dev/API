@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\andrea.redegalli.stu\\Documents\\MyFit-API\\MyFit-API\\MyFit-API.csproj": {}
+    "C:\\Users\\redeg\\Documents\\MyFit-API\\MyFit-API\\MyFit-API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\andrea.redegalli.stu\\Documents\\MyFit-API\\MyFit-API\\MyFit-API.csproj": {
+    "C:\\Users\\redeg\\Documents\\MyFit-API\\MyFit-API\\MyFit-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\andrea.redegalli.stu\\Documents\\MyFit-API\\MyFit-API\\MyFit-API.csproj",
+        "projectUniqueName": "C:\\Users\\redeg\\Documents\\MyFit-API\\MyFit-API\\MyFit-API.csproj",
         "projectName": "MyFit-API",
-        "projectPath": "C:\\Users\\andrea.redegalli.stu\\Documents\\MyFit-API\\MyFit-API\\MyFit-API.csproj",
-        "packagesPath": "C:\\Users\\andrea.redegalli.stu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\andrea.redegalli.stu\\Documents\\MyFit-API\\MyFit-API\\obj\\",
+        "projectPath": "C:\\Users\\redeg\\Documents\\MyFit-API\\MyFit-API\\MyFit-API.csproj",
+        "packagesPath": "C:\\Users\\redeg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\redeg\\Documents\\MyFit-API\\MyFit-API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\andrea.redegalli.stu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\redeg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,9 +44,17 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [
@@ -66,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\andrea.redegalli.stu\\AppData\\Roaming\\.dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

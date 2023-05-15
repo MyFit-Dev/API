@@ -12,15 +12,4 @@ MyFit-Libs/bin/
 
 MyFit-API/obj/
 MyFit-Libs/obj/
-<<<<<<< HEAD
 >>>>>>> ca9aafcb58ac2a74eef66ec5a65f1a4ff49d4f15
-=======
-
-./MyFit-API/obj/
-./MyFit-Libs/obj/
-.vs
-_BACKUP_129.gitignore
-_BASE_129.gitignore
-_LOCAL_129.gitignore
-_REMOTE_129.gitignore
->>>>>>> master
