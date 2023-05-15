@@ -20,7 +20,7 @@ namespace MyFit_API.Database
 
         public T? MakeQueryOneResult(SqlCommand sqlCommand)
         {
-            CreateConnectionToDatabase(null, null, true);
+            CreateConnectionToDatabase();
             T? value = JsonConvert.DeserializeObject<T>(GetOneResult(sqlCommand));
             DeleteConnection();
             return value;
@@ -28,7 +28,7 @@ namespace MyFit_API.Database
 
         public T? MakeQueryMoreResults(SqlCommand sqlCommand)
         {
-            CreateConnectionToDatabase(null, null, true);
+            CreateConnectionToDatabase();
             T? value = JsonConvert.DeserializeObject<T>(GetAllResults(sqlCommand));
             DeleteConnection();
             return value;
@@ -36,7 +36,7 @@ namespace MyFit_API.Database
 
         public void MakeQueryNoResult(SqlCommand sqlCommand)
         {
-            CreateConnectionToDatabase(null, null, true);
+            CreateConnectionToDatabase();
             GetNoneResult(sqlCommand);
             DeleteConnection();
         }
@@ -53,13 +53,13 @@ namespace MyFit_API.Database
         /// <param name="initialCatalog">Nome del database</param>
         /// <param name="datasource">Nome del server sql</param>
         /// <param name="integratedSecurity">integrated security</param>
-        private void CreateConnectionToDatabase(string? initialCatalog, string? datasource, bool integratedSecurity)
+        private void CreateConnectionToDatabase()
         {
             //significa che _conn ha gia un'istanza di SqlConnection
             if (checkConnectionDatabase())
                 throw new Exception("Errore interno. Connessione gia aperta.");
             SqlConnectionStringBuilder connBuilder = new SqlConnectionStringBuilder();
-            connBuilder.ConnectionString = DatabaseInfo.DefaultConnectionString;
+            connBuilder.ConnectionString = DatabaseInfo.ConnectionString;
             _conn = new SqlConnection(connBuilder.ToString());
         }
 
