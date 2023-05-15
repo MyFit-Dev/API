@@ -15,11 +15,10 @@ public class Record
     public int Id { get; set; }
     public string Name { get; set; }
     public string Goal { get; set; }
-
-    public string Reward { get; set; }
+    public string? Reward { get; set; }
     public int Difficulty { get; set; }
 
-    public Record(int id, string name, string goal, string reward, int difficulty)
+    public Record(int id, string name, string goal, string? reward, int difficulty)
     {
         Id = id;
         Name = name;
@@ -28,7 +27,7 @@ public class Record
         Difficulty = difficulty;
     }
 
-    public Record(string name, string goal, string reward, int difficulty)
+    public Record(string name, string goal, string? reward, int difficulty)
     {
         Name = name;
         Goal = goal;

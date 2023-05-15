@@ -11,21 +11,21 @@ public class DataRecord
     public long Id { get; set; }
     public int IdRecord { get; set; }
     public long IdUser { get; set; }
-    public string Name { get; set; }
+    public DateTime Date { get; set; }
     
-    public DataRecord(long id, int idRecord, long idUser, string name)
+    public DataRecord(long id, int idRecord, long idUser, DateTime date)
     {
         Id = id;
         IdRecord = idRecord;
         IdUser = idUser;
-        Name = name;
+        Date = date;
     }
 
-    public DataRecord(int idRecord, long idUser, string name)
+    public DataRecord(int idRecord, long idUser, DateTime date)
     {
         IdRecord = idRecord;
         IdUser = idUser;
-        Name = name;
+        Date = date;
     }
 
 }

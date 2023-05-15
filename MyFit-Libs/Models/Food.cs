@@ -9,31 +9,18 @@ namespace MyFit_Libs.Models
     {
 
         public long Id { get; set;}
-
         public string Nome { get; set;}
-
         public string? Description { get; set;}
-
         public int Weight { get; set;}
-
         public byte Calories { get; set;}
-
         public byte Carbs { get; set;}
-
         public byte Sugars { get; set;}
-
         public byte Proteins { get; set;}
-
         public byte Fats { get; set;}
-
         public byte Salt { get; set;}
-
         public byte Magnesium { get; set;}
-
         public byte Iron { get; set;}
-
         public byte Potassium { get; set;}
-
         public string? Image { get; set;}
 
         
