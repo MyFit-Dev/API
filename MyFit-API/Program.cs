@@ -1,4 +1,7 @@
 using MtFit_API.Database;
+using MyFit_API.Controllers;
+using MyFit_API.Repositories;
+using MyFit_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddSingleton<UserController, UserController>();
+builder.Services.AddSingleton<UserService, UserService>();
+builder.Services.AddSingleton<UserRepository, UserRepository>();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
 DatabaseInfo.ConnectionString = connectionString;

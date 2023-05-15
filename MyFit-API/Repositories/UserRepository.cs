@@ -9,7 +9,7 @@ namespace MyFit_API.Repositories
 
         internal User? GetUserById(long id)
         {
-            string query = "SELECT * FROM Users WHERE id = @_id";
+            string query = "SELECT * FROM Utenti WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_id", id);
             return DatabaseManager<User>.GetInstance().MakeQueryOneResult(cmd);

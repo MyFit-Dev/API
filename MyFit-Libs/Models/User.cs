@@ -17,6 +17,11 @@ public class User {
     public int IdGym { get; set;}
     public bool IntermittentFasting { get; set;}
 
+    public User()
+    {
+
+    }
+
     public User(string name, string surname, string mail, string state, string city, int idPlan, int idGym, bool intermittentFasting)
     {
         Name = name;
@@ -39,6 +44,29 @@ public class User {
         City = city;
         IdPlan = idPlan;
         IdGym = idGym;
+        IntermittentFasting = intermittentFasting;
+    }
+
+    public User(long id, string name, string surname, string mail, string state, string city, int idPlan, bool intermittentFasting)
+    {
+        Id = id;
+        Name = name;
+        Surname = surname;
+        Mail = mail;
+        State = state;
+        City = city;
+        IdPlan = idPlan;
+        IntermittentFasting = intermittentFasting;
+    }
+
+    public User(string name, string surname, string mail, string state, string city, int idPlan, bool intermittentFasting)
+    {
+        Name = name;
+        Surname = surname;
+        Mail = mail;
+        State = state;
+        City = city;
+        IdPlan = idPlan;
         IntermittentFasting = intermittentFasting;
     }
 
