@@ -11,10 +11,8 @@ CREATE TABLE Utenti(
     Nome VARCHAR(32) NOT NULL,
     Cognome VARCHAR(64) NOT NULL,
     Mail VARCHAR(128) NOT NULL,
-    Password VARCHAR(128) NOT NULL,
     Nazione VARCHAR(64) NOT NULL,
     Città VARCHAR(64) NOT NULL,
-    Indirizzo VARCHAR(128) NOT NULL,
     Id_piano int(5) NOT NULL,
     Id_palestra int(18),
     Digiuno_intermittente BOOLEAN NOT NULL,
@@ -54,7 +52,11 @@ CREATE TABLE Palestre(
     Id int(18) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(54) NOT NULL,
     Id_staff int(18) NOT NULL, 
-    Indirizzo VARCHAR(128) NOT NULL,
+    Nazione VARCHAR(64) NOT NULL,
+    Città VARCHAR(64) NOT NULL,
+    Via VARCHAR(64) NOT NULL,
+    Numero_Civico int(8) NOT NULL,
+    CAP int(8) NOT NULL,
     FOREIGN KEY (Id_staff) REFERENCES Staff(Id)
 );
 
