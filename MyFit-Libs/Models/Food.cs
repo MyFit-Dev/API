@@ -23,6 +23,11 @@ namespace MyFit_Libs.Models
         public byte Potassium { get; set;}
         public string? Image { get; set;}
 
+
+        public Food()
+        {
+
+        }
         
         public Food(long id, string nome, string? description, int weight, byte calories, byte carbs, byte sugars, byte proteins, byte fats, byte salt, byte magnesium, byte iron, byte potassium, string image)
         {
