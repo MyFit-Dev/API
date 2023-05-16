@@ -26,6 +26,13 @@ namespace MyFit_API.Controllers
             return Ok(_userService.GetAllUsers());
         }
 
+        [Route("countAll")]
+        [HttpGet]
+        public IActionResult CountAllUsers()
+        {
+            return Ok(_userService.CountUsers());
+        }
+
         [Route("getById")]
         [HttpGet]
         public IActionResult GetUserById(long id)

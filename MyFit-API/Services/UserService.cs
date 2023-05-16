@@ -153,5 +153,10 @@ namespace MyFit_API.Services
                 throw new UserNotFoundException("User not found");
         }
 
+        public long CountUsers()
+        {
+            return _userRepository.CountUsers();
+        }
+
     }
 }

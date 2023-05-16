@@ -182,5 +182,13 @@ namespace MyFit_API.Repositories
 
             return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
+
+        internal long CountUsers()
+        {
+            string query = "SELECT COUNT(*) FROM [User]";
+            SqlCommand cmd = new SqlCommand(query);
+
+            return DatabaseManager<long>.GetInstance().MakeQueryOneScalarResult(cmd);
+        }
     }
 }
