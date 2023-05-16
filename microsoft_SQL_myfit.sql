@@ -160,7 +160,7 @@ PRIMARY KEY CLUSTERED
 GO
 
 ALTER TABLE [MyFit].[dbo].[User]  WITH CHECK ADD FOREIGN KEY([IdPlan])
-REFERENCES [MyFit].[dbo].[Plan] ([Id])
+REFERENCES [MyFit].[dbo].[Plan] ([Id]) ON DELETE CASCADE; 
 GO
 
 /****** Object:  Table [MyFit].[dbo].[StaffType]    Script Date: 15/05/2023 21:54:51 ******/
@@ -208,7 +208,7 @@ PRIMARY KEY CLUSTERED
 GO
 
 ALTER TABLE [MyFit].[dbo].[CustomExercise]  WITH CHECK ADD FOREIGN KEY([IdUser])
-REFERENCES [MyFit].[dbo].[User] ([Id])
+REFERENCES [MyFit].[dbo].[User] ([Id]) ON DELETE CASCADE;
 GO
 
 /****** Object:  Table [MyFit].[dbo].[Staff]    Script Date: 15/05/2023 21:56:18 ******/
@@ -230,11 +230,11 @@ PRIMARY KEY CLUSTERED
 GO
 
 ALTER TABLE [MyFit].[dbo].[Staff]  WITH CHECK ADD FOREIGN KEY([IdType])
-REFERENCES [MyFit].[dbo].[StaffType] ([Id])
+REFERENCES [MyFit].[dbo].[StaffType] ([Id]) ON DELETE CASCADE;
 GO
 
 ALTER TABLE [MyFit].[dbo].[Staff]  WITH CHECK ADD FOREIGN KEY([IdUser])
-REFERENCES [MyFit].[dbo].[User] ([Id])
+REFERENCES [MyFit].[dbo].[User] ([Id]) ON DELETE CASCADE;
 GO
 
 /****** Object:  Table [MyFit].[dbo].[Gym]    Script Date: 15/05/2023 21:57:16 ******/
@@ -261,7 +261,7 @@ PRIMARY KEY CLUSTERED
 GO
 
 ALTER TABLE [MyFit].[dbo].[Gym]  WITH CHECK ADD FOREIGN KEY([IdStaff])
-REFERENCES [MyFit].[dbo].[Staff] ([Id])
+REFERENCES [MyFit].[dbo].[Staff] ([Id]) ON DELETE CASCADE;
 GO
 
 /****** Object:  Table [MyFit].[dbo].[Record]    Script Date: 15/05/2023 21:58:11 ******/
@@ -368,7 +368,7 @@ PRIMARY KEY CLUSTERED
 GO
 
 ALTER TABLE [MyFit].[dbo].[Log]  WITH CHECK ADD FOREIGN KEY([IdUser])
-REFERENCES [MyFit].[dbo].[User] ([Id])
+REFERENCES [MyFit].[dbo].[User] ([Id]) ON DELETE NO ACTION;
 GO
 
 /****** Object:  Table [MyFit].[dbo].[Message]    Script Date: 15/05/2023 22:01:35 ******/
@@ -393,11 +393,11 @@ PRIMARY KEY CLUSTERED
 GO
 
 ALTER TABLE [MyFit].[dbo].[Message]  WITH CHECK ADD FOREIGN KEY([IdRecipient])
-REFERENCES [MyFit].[dbo].[User] ([Id])
+REFERENCES [MyFit].[dbo].[User] ([Id]) ON DELETE NO ACTION;
 GO
 
 ALTER TABLE [MyFit].[dbo].[Message]  WITH CHECK ADD FOREIGN KEY([IdSender])
-REFERENCES [MyFit].[dbo].[User] ([Id])
+REFERENCES [MyFit].[dbo].[User] ([Id]) ON DELETE NO ACTION;
 GO
 
 /****** Object:  Table [MyFit].[dbo].[Diet]    Script Date: 15/05/2023 21:51:19 ******/
@@ -420,7 +420,7 @@ PRIMARY KEY CLUSTERED
 GO
 
 ALTER TABLE [MyFit].[dbo].[Diet]  WITH CHECK ADD FOREIGN KEY([IdUser])
-REFERENCES [MyFit].[dbo].[User] ([Id])
+REFERENCES [MyFit].[dbo].[User] ([Id]) ON DELETE CASCADE;
 GO
 
 /****** Object:  Table [MyFit].[dbo].[Food]    Script Date: 15/05/2023 22:02:12 ******/
