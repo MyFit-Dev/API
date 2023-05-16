@@ -18,6 +18,8 @@ public class Record
     public string? Reward { get; set; }
     public int Difficulty { get; set; }
 
+    public Record() {}
+
     public Record(int id, string name, string goal, string? reward, int difficulty)
     {
         Id = id;

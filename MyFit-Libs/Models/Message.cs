@@ -14,6 +14,7 @@ public class Message
     public long IdRecipient { get; set; }
     public bool Displayed { get; set; }
 
+    public Message() {}
     public Message(long id, string text, DateTime date, long idSender, long idRecipient, bool displayed)
     {
         Id = id;

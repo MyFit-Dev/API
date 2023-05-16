@@ -11,6 +11,8 @@ namespace MyFit_Libs.Models
         public int IdUser { get; set; }
         public int IdType { get; set; }
 
+        public Staff() {}
+
         public Staff(string id, int idUser, int idType)
         {
             Id = id;

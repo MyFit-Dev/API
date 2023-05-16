@@ -14,6 +14,8 @@ public class Plan
     public float Price { get; set; }
     public string Description { get; set; }
 
+    public Plan() {}
+
     public Plan(string name, byte value, float price, string description)
     {
         Name = name;

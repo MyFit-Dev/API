@@ -17,10 +17,7 @@ public class User {
     public int? IdGym { get; set;}
     public bool IntermittentFasting { get; set;}
 
-    public User()
-    {
-
-    }
+    public User() {}
 
     public User(string name, string surname, string mail, string state, string city, int idPlan, int? idGym, bool intermittentFasting)
     {

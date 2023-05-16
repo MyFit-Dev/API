@@ -22,6 +22,8 @@ public class CustomExercise {
     public string Target { get; set; }
     public bool Private { get; set; }
 
+    public CustomExercise() {}
+
     public CustomExercise(int id, int idUser, string name, string description, string method, string image, string video, int duration, byte difficulty, int calories, string target, bool privato)
     {
         Id = id;

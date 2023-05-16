@@ -10,6 +10,8 @@ public class StaffType
     public byte Id { get; set; }
     public string Name { get; set; }
 
+    public StaffType() {}
+
     public StaffType(string name)
     {
         Name = name;

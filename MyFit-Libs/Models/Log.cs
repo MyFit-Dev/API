@@ -15,6 +15,8 @@ namespace MyFit_Libs.Models;
         public long IdUtente { get; set; }
         public byte Value { get ; set; }
 
+        public Log() {}
+
         public Log(long id, string text, string scope, DateTime date, long idUtente, byte value)
         {
             Id = id;

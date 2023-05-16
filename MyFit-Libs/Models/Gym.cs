@@ -15,6 +15,8 @@ public class Gym
     public string Street { get; set; }
     public int CivicNumber { get; set; }
     public int CAP { get; set; }
+    
+    public Gym() {}    
 
     public Gym(string name, long idStaff, string state, string city, string street, int civicNumber, int cAP)
     {

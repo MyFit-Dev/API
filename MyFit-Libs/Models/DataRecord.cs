@@ -13,9 +13,7 @@ public class DataRecord
     public long IdUser { get; set; }
     public DateTime Date { get; set; }
     
-    public DataRecord() { 
-    
-    }
+    public DataRecord() {}
 
     public DataRecord(long id, int idRecord, long idUser, DateTime date)
     {

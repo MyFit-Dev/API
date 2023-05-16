@@ -19,6 +19,8 @@ public class GenericExercise
     public int Calories {  get; set; }
     public string Target { get; set; }
 
+    public GenericExercise() {}
+
     public GenericExercise(int id, string name, string description, string method, string image, string video, int duration, byte difficulty, int calories, string target)
     {
         Id = id;

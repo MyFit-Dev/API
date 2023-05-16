@@ -11,6 +11,8 @@ public class Permission
     public string Name { get; set; }
     public string Value { get; set; }
 
+    public Permission() {} 
+
     public Permission(int id, string name, string value)
     {
         Id = id;

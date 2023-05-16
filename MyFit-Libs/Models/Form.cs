@@ -12,6 +12,8 @@ public class Form
     public string GenericExercise { get; set; }
     public string CustomExercise { get; set; }
 
+    public Form() {}
+
     public Form(long id, long idUtente, string genericExercise, string customExercise)
     {
         Id = id;
