@@ -26,6 +26,14 @@ namespace MyFit_API.Database
             return value;
         }
 
+        public T? MakeQueryOneScalarResult(SqlCommand sqlCommand)
+        {
+            CreateConnectionToDatabase();
+            T? value = JsonConvert.DeserializeObject<T>(GetOneScalarResult(sqlCommand));
+            DeleteConnection();
+            return value;
+        }
+
         public T? MakeQueryMoreResults(SqlCommand sqlCommand)
         {
             CreateConnectionToDatabase();
@@ -93,6 +101,23 @@ namespace MyFit_API.Database
             }
         }
 
+        private string GetOneScalarResult(SqlCommand cmd)
+        {
+            if (!checkConnectionDatabase())
+            {
+                throw new DatabaseException("Database connection not set");
+            }
+            using (var conn = _conn)
+            {
+                cmd.Connection = conn;
+                conn.Open();
+                var reader = cmd.ExecuteScalar();
+                string jsonResult = JsonConvert.SerializeObject(reader);
+                conn.Close();
+                jsonResult = jsonResult.Replace("[", "").Replace("]", "");
+                return jsonResult;
+            }
+        }
 
 
         protected IEnumerable<Dictionary<string, object>> Serialize(SqlDataReader reader)
