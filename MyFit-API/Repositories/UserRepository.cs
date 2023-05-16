@@ -6,6 +6,13 @@ namespace MyFit_API.Repositories
 {
     public class UserRepository
     {
+        internal List<User> GetAllUsers()
+        {
+            string query = "SELECT * FROM [User]";
+            SqlCommand cmd = new SqlCommand(query);
+
+            return DatabaseManager<List<User>>.GetInstance().MakeQueryMoreResults(cmd);
+        }
 
         internal User? GetUserById(long id)
         {
@@ -17,7 +24,7 @@ namespace MyFit_API.Repositories
 
         internal User? GetUserByMail(string mail)
         {
-            string query = "SELECT * FROM [User] WHERE Mail = '@_mail'";
+            string query = "SELECT * FROM [User] WHERE Mail = @_mail";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_mail", mail);
             return DatabaseManager<User>.GetInstance().MakeQueryOneResult(cmd);
@@ -64,7 +71,7 @@ namespace MyFit_API.Repositories
             int? IdGym = user.IdGym;
             bool IntermittentFasting = user.IntermittentFasting;
 
-            string query = "INSERT INTO [User] ([Name],[Surname],[Mail],[State],[City],[IdPlan],[IdGym],[IntermittentFasting]) VALUES ('@_name', '@_surname', '@_mail', '@_state', '@_city', @_idPlan, @_idGym, @_intermittentFasting)";
+            string query = "INSERT INTO [User] ([Name],[Surname],[Mail],[State],[City],[IdPlan],[IdGym],[IntermittentFasting]) VALUES (@_name, @_surname, @_mail, @_state, @_city, @_idPlan, @_idGym, @_intermittentFasting)";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_name", Name);
             cmd.Parameters.AddWithValue("@_surname", Surname);
@@ -78,102 +85,102 @@ namespace MyFit_API.Repositories
             DatabaseManager<object>.GetInstance().MakeQueryNoResult(cmd);
         }
 
-        internal int SetUserName(long id, string name)
+        internal object? SetUserName(long id, string name)
         {
-            string query = "UPDATE [User] SET Name = '@_name' WHERE Id = @_id";
+            string query = "UPDATE [User] SET Name = @_name WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_name", name);
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal int SetUserSurname(long id, string surname)
+        internal object? SetUserSurname(long id, string surname)
         {
-            string query = "UPDATE [User] SET Surname = '@_surname' WHERE Id = @_id";
+            string query = "UPDATE [User] SET Surname = @_surname WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_surname", surname);
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal int SetUserMail(long id, string mail)
+        internal object? SetUserMail(long id, string mail)
         {
-            string query = "UPDATE [User] SET Mail = '@_mail' WHERE Id = @_id";
+            string query = "UPDATE [User] SET Mail = @_mail WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_mail", mail);
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal int SetUserState(long id, string state)
+        internal object? SetUserState(long id, string state)
         {
-            string query = "UPDATE [User] SET State = '@_state' WHERE Id = @_id";
+            string query = "UPDATE [User] SET State = @_state WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_state", state);
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal int SetUserCity(long id, string city)
+        internal object? SetUserCity(long id, string city)
         {
-            string query = "UPDATE [User] SET City = '@_city' WHERE Id = @_id";
+            string query = "UPDATE [User] SET City = @_city WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_city", city);
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal int SetUserPlan(long id, int? idPlan)
+        internal object? SetUserPlan(long id, int? idPlan)
         {
             string query = "UPDATE [User] SET IdPlan = @_idPlan WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_idPlan", idPlan);
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal int SetUserGym(long id, int? idGym)
+        internal object? SetUserGym(long id, int? idGym)
         {
             string query = "UPDATE [User] SET IdGym = @_idGym WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_idGym", idGym);
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal int SetUserIntermittentFasting(long id, bool? intermittentFasting)
+        internal object? SetUserIntermittentFasting(long id, bool? intermittentFasting)
         {
             string query = "UPDATE [User] SET IntermittentFasting = @_intermittentFasting WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_intermittentFasting", intermittentFasting);
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal int DeleteUserById(long id)
+        internal object? DeleteUserById(long id)
         {
-            string query = "DELETE CASCADE FROM [User] WHERE Id = @_id";
+            string query = "DELETE FROM [User] WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal int DeleteUserByMail(string? mail)
+        internal object? DeleteUserByMail(string? mail)
         {
-            string query = "DELETE CASCADE FROM [User] WHERE Mail = '@_mail'";
+            string query = "DELETE FROM [User] WHERE Mail = @_mail";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_mail", mail);
 
-            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd);
+            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
     }
 }

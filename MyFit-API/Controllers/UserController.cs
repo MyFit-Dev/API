@@ -19,6 +19,13 @@ namespace MyFit_API.Controllers
             this._userService = userService;
         }
 
+        [Route("getAll")]
+        [HttpGet]
+        public IActionResult GetAllUsers()
+        {
+            return Ok(_userService.GetAllUsers());
+        }
+
         [Route("getById")]
         [HttpGet]
         public IActionResult GetUserById(long id)
@@ -108,7 +115,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("add")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult AddUser(User? user)
         {
             if (user == null)

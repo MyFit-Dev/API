@@ -10,6 +10,11 @@ namespace MyFit_API.Services
     {
         private UserRepository _userRepository = new UserRepository();
 
+        public List<User> GetAllUsers()
+        {
+            return _userRepository.GetAllUsers();
+        }
+
         public User GetUserById(long id)
         {
             User? user = _userRepository.GetUserById(id);
@@ -70,81 +75,81 @@ namespace MyFit_API.Services
 
         public void SetUserName(long id, string name)
         {
-            int rows = _userRepository.SetUserName(id, name);
+            object? rows = _userRepository.SetUserName(id, name);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found"); ;
         }
 
         public void SetUserSurname(long id, string surname)
         {
-            int rows = _userRepository.SetUserSurname(id, surname);
+            object? rows = _userRepository.SetUserSurname(id, surname);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found");
         }
 
         public void SetUserMail(long id, string mail)
         {
-            int rows = _userRepository.SetUserMail(id, mail);
+            object? rows = _userRepository.SetUserMail(id, mail);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found");
         }
 
         public void SetUserState(long id, string state)
         {
-            int rows = _userRepository.SetUserState(id, state);
+            object? rows = _userRepository.SetUserState(id, state);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found");
         }
 
         public void SetUserCity(long id, string city)
         {
-            int rows = _userRepository.SetUserCity(id, city);
+            object? rows = _userRepository.SetUserCity(id, city);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found");
         }
 
         public void SetUserPlan(long id, int? idPlan)
         {
-            int rows = _userRepository.SetUserPlan(id, idPlan);
+            object? rows = _userRepository.SetUserPlan(id, idPlan);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found");
         }
 
         public void SetUserGym(long id, int? idGym)
         {
-            int rows = _userRepository.SetUserGym(id, idGym);
+            object? rows = _userRepository.SetUserGym(id, idGym);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found");
         }
 
         public void SetUserIntermittentFasting(long id, bool? intermittentFasting)
         {
-            int rows = _userRepository.SetUserIntermittentFasting(id, intermittentFasting);
+            object? rows = _userRepository.SetUserIntermittentFasting(id, intermittentFasting);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found");
         }
 
         public void DeleteUserById(long id)
         {
-            int rows = _userRepository.DeleteUserById(id);
+            object? rows = _userRepository.DeleteUserById(id);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found");
         }
 
         public void DeleteUserByMail(string? mail)
         {
-            int rows = _userRepository.DeleteUserByMail(mail);
+            object? rows = _userRepository.DeleteUserByMail(mail);
 
-            if (rows == 0)
+            if (rows == null)
                 throw new UserNotFoundException("User not found");
         }
 
