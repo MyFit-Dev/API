@@ -1,4 +1,7 @@
-﻿using MyFit_API.Repositories;
+﻿using MyFit_API.Exceptions.GymException;
+using MyFit_API.Exceptions.PlanException;
+using MyFit_API.Exceptions.UserException;
+using MyFit_API.Repositories;
 using MyFit_Libs.Models;
 
 namespace MyFit_API.Services
@@ -7,24 +10,44 @@ namespace MyFit_API.Services
     {
         private UserRepository _userRepository = new UserRepository();
 
-        public User? GetUserById(long id)
+        public User GetUserById(long id)
         {
-            return _userRepository.GetUserById(id);
+            User? user = _userRepository.GetUserById(id);
+
+            if (user == null) 
+                throw new UserNotFoundException("User not found");
+
+            return user;
         }
 
-        public User? GetUserByName(string name)
+        public User GetUserByMail(string mail)
         { 
-            return _userRepository.GetUserByEmail(name);
+            User user = _userRepository.GetUserByMail(mail);
+
+            if (user == null)
+                throw new UserNotFoundException("User not found");
+
+            return user;
         }
 
         public Plan GetUserPlan(long id)
         {
-            return _userRepository.GetUserPlan(id);
+            Plan? plan = _userRepository.GetUserPlan(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not found");
+
+            return plan;
         }
 
-        public Gym? GetUserGym(long id)
+        public Gym GetUserGym(long id)
         {
-            return _userRepository.GetUserGym(id);
+            Gym? gym = _userRepository.GetUserGym(id);
+
+            if (gym == null)
+                throw new GymNotFoundException("Gym not found");
+
+            return gym;
         }
 
         public string? GetUserFoodListOnDate(long id, DateTime date)
@@ -39,57 +62,90 @@ namespace MyFit_API.Services
 
         public void AddUser(User user)
         {
-            _userRepository.AddUser(user);
+            if (_userRepository.GetUserByMail(user.Mail) == null)
+                _userRepository.AddUser(user);
+            else
+                throw new UserAlredyFoundException("User alredy exists");
         }
 
-        public int SetUserName(long id, string name)
+        public void SetUserName(long id, string name)
         {
-            return _userRepository.SetUserName(id, name);
+            int rows = _userRepository.SetUserName(id, name);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found"); ;
         }
 
-        public int SetUserSurname(long id, string surname)
+        public void SetUserSurname(long id, string surname)
         {
-            return _userRepository.SetUserSurname(id, surname);
+            int rows = _userRepository.SetUserSurname(id, surname);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found");
         }
 
-        public int SetUserMail(long id, string mail)
+        public void SetUserMail(long id, string mail)
         {
-            return _userRepository.SetUserMail(id, mail);
+            int rows = _userRepository.SetUserMail(id, mail);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found");
         }
 
-        public int SetUserState(long id, string state)
+        public void SetUserState(long id, string state)
         {
-            return _userRepository.SetUserState(id, state);
+            int rows = _userRepository.SetUserState(id, state);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found");
         }
 
-        public int SetUserCity(long id, string city)
+        public void SetUserCity(long id, string city)
         {
-            return _userRepository.SetUserCity(id, city);
+            int rows = _userRepository.SetUserCity(id, city);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found");
         }
 
-        public int SetUserPlan(long id, int idPlan)
+        public void SetUserPlan(long id, int? idPlan)
         {
-            return _userRepository.SetUserPlan(id, idPlan);
+            int rows = _userRepository.SetUserPlan(id, idPlan);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found");
         }
 
-        public int SetUserGym(long id, int? idGym)
+        public void SetUserGym(long id, int? idGym)
         {
-            return _userRepository.SetUserGym(id, idGym);
+            int rows = _userRepository.SetUserGym(id, idGym);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found");
         }
 
-        public int SetUserIntermittentFasting(long id, bool intermittentFasting)
+        public void SetUserIntermittentFasting(long id, bool? intermittentFasting)
         {
-            return _userRepository.SetUserIntermittentFasting(id, intermittentFasting);
+            int rows = _userRepository.SetUserIntermittentFasting(id, intermittentFasting);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found");
         }
 
-        public int DeleteUserById(long id)
+        public void DeleteUserById(long id)
         {
-            return _userRepository.DeleteUserById(id);
+            int rows = _userRepository.DeleteUserById(id);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found");
         }
 
-        public int DeleteUserByMail(string mail)
+        public void DeleteUserByMail(string? mail)
         {
-            return _userRepository.DeleteUserByMail(mail);
+            int rows = _userRepository.DeleteUserByMail(mail);
+
+            if (rows == 0)
+                throw new UserNotFoundException("User not found");
         }
 
     }
