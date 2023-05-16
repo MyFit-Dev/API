@@ -11,7 +11,9 @@ namespace MyFit_Libs.Models
 
         public long IdUser { get; set;}
 
-        //Lista alimenti Food;Amount;Past
+        //JSON
+        public string FoodList { get; set;}
+
         public DateTime Date { get; set;} 
 
         public Diet() {}
