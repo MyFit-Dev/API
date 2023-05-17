@@ -12,13 +12,14 @@ namespace MyFit_Libs.Models
 
         public long IdUser { get; set;}
 
-        public Dictionary<long, Meal> FoodList { get; set; }
+        //hh:mm;i <- i è un counter
+        public Dictionary<string, Meal> FoodList { get; set; }
 
         public DateTime Date { get; set;} 
 
         public Diet() {}
 
-        public Diet(long id, long idUser, Dictionary<long, Meal> foodList, DateTime date)
+        public Diet(long id, long idUser, Dictionary<string, Meal> foodList, DateTime date)
         {
             Id = id;
             IdUser = idUser;
@@ -26,7 +27,7 @@ namespace MyFit_Libs.Models
             Date = date;
         }
 
-        public Diet(long idUser, Dictionary<long, Meal> foodList, DateTime date)
+        public Diet(long idUser, Dictionary<string, Meal> foodList, DateTime date)
         {
             IdUser = idUser;
             FoodList = foodList;

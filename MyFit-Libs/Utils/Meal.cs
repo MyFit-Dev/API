@@ -12,19 +12,15 @@ namespace MyFit_Libs.Utils
 
         public Food Food { get; set; }
         public int Amount { get; set; }
-        public int Hour { get; set; }
-        public int Minute { get; set; }
 
         public Meal()
         {
         }
 
-        public Meal(Food food, int amount, int hour, int minute)
+        public Meal(Food food, int amount)
         {
             Food = food;
             Amount = amount;
-            Hour = hour;
-            Minute = minute;
         }
 
     }
