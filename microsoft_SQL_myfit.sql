@@ -295,7 +295,7 @@ CREATE TABLE [MyFit].[dbo].[DataRecord](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[IdRecord] [int] NOT NULL,
 	[IdUser] [int] NOT NULL,
-	[Date] [Date](0) NOT NULL,
+	[Date] [datetime](0) NOT NULL,
  CONSTRAINT [PK_DataRecord] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -357,7 +357,7 @@ CREATE TABLE [MyFit].[dbo].[Log](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Text] [varchar](255) NOT NULL,
 	[Scope] [varchar](64) NOT NULL,
-	[Date] [Date](0) NOT NULL,
+	[Date] [datetime](0) NOT NULL,
 	[IdUser] [int] NOT NULL,
 	[Value] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
@@ -381,7 +381,7 @@ GO
 CREATE TABLE [MyFit].[dbo].[Message](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Text] [varchar](255) NOT NULL,
-	[Date] [Date](0) NOT NULL,
+	[Date] [datetime](0) NOT NULL,
 	[IdSender] [int] NOT NULL,
 	[IdRecipient] [int] NOT NULL,
 	[Displayed] [bit] NOT NULL,
