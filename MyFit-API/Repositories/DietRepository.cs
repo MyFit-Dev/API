@@ -96,7 +96,7 @@ namespace MyFit_API.Repositories
         {
             long idUser = diet.IdUser;
             DateTime date = diet.Date;
-            Dictionary<string, Meal> foodList = diet.FoodList;
+            Dictionary<string, List<Meal>> foodList = diet.FoodList;
 
             string query = "INSERT INTO [Diet] ([IdUser],[FoodList],[Date]) VALUES (@_idUser,@_foodList,@_date)";
             SqlCommand cmd = new SqlCommand(query);
@@ -108,7 +108,7 @@ namespace MyFit_API.Repositories
             DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd);
         }
 
-        internal object? SetFoodListDietOfUser(long idUser, DateTime date, Dictionary<string, Meal> foodList)
+        internal object? SetFoodListDietOfUser(long idUser, DateTime date, Dictionary<string, List<Meal>> foodList)
         {
             string query = "UPDATE [Diet] SET [FoodList] = @_foodList WHERE IdUser = @_idUser AND Date = @_date";
             SqlCommand cmd = new SqlCommand(query);
