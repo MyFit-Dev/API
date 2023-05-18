@@ -7,7 +7,7 @@ namespace MyFit_API.Repositories
     public class PlanRepository
     {
 
-        internal List<Plan> GetAllPlans()
+        internal List<Plan>? GetAllPlans()
         {
             string query = "SELECT * FROM [Plan]";
             SqlCommand cmd = new SqlCommand(query);
@@ -15,49 +15,13 @@ namespace MyFit_API.Repositories
             return DatabaseManager<List<Plan>>.GetInstance().MakeQueryMoreResults(cmd);
         }
 
-        internal Plan GetPlanById(byte id)
+        internal Plan? GetPlanById(byte id)
         {
             string query = "SELECT * FROM [Plan] WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_id", id);
 
             return DatabaseManager<Plan>.GetInstance().MakeQueryOneResult(cmd);
-        }
-
-        internal string? GetPlanName(byte id)
-        {
-            string query = "SELECT Nome FROM [Plan] WHERE Id = @_id";
-            SqlCommand cmd = new SqlCommand(query);
-            cmd.Parameters.AddWithValue("@_id", id);
-
-            return DatabaseManager<string?>.GetInstance().MakeQueryOneResult(cmd);
-        }
-
-        internal byte? GetPlanValue(byte id)
-        {
-            string query = "SELECT Value FROM [Plan] WHERE Id = @_id";
-            SqlCommand cmd = new SqlCommand(query);
-            cmd.Parameters.AddWithValue("@_id", id);
-
-            return DatabaseManager<byte?>.GetInstance().MakeQueryOneResult(cmd);
-        }
-
-        internal float? GetPlanPrice(byte id)
-        {
-            string query = "SELECT Price FROM [Plan] WHERE Id = @_id";
-            SqlCommand cmd = new SqlCommand(query);
-            cmd.Parameters.AddWithValue("@_id", id);
-
-            return DatabaseManager<float?>.GetInstance().MakeQueryOneResult(cmd);
-        }
-
-        internal string? GetPlanDescription(byte id)
-        {
-            string query = "SELECT Description FROM [Plan] WHERE Id = @_id";
-            SqlCommand cmd = new SqlCommand(query);
-            cmd.Parameters.AddWithValue("@_id", id);
-
-            return DatabaseManager<string?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
         internal void AddPlan(Plan plan)

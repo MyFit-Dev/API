@@ -130,7 +130,7 @@ namespace MyFit_API.Repositories
             return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal object? DeleteDietByUserAndDate(long idUser, DateTime date)
+        internal object? DeleteDietOfUserAndDate(long idUser, DateTime date)
         {
             string query = "DELETE FROM [Diet] WHERE IdUser = @_idUser AND Date = @_date";
             SqlCommand cmd = new SqlCommand(query);
@@ -141,7 +141,7 @@ namespace MyFit_API.Repositories
             return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal object? DeleteDietByUser(long idUser)
+        internal object? DeleteDietsOfUser(long idUser)
         {
             string query = "DELETE FROM [Diet] WHERE IdUser = @_idUser";
             SqlCommand cmd = new SqlCommand(query);
@@ -151,7 +151,7 @@ namespace MyFit_API.Repositories
             return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal object? DeleteDietByUserBetweenDate(long idUser, DateTime startDate, DateTime endDate)
+        internal object? DeleteDietsOfUserBetweenDate(long idUser, DateTime startDate, DateTime endDate)
         {
             string query = "DELETE FROM [Diet] WHERE IdUser = @_idUser AND Date BETWEEN (@_startDate AND @_endDate)";
             SqlCommand cmd = new SqlCommand(query);
