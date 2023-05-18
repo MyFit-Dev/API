@@ -23,5 +23,11 @@ namespace MyFit_Libs.Utils
             Amount = amount;
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Meal meal &&
+                   EqualityComparer<Food>.Default.Equals(Food, meal.Food) &&
+                   Amount == meal.Amount;
+        }
     }
 }
