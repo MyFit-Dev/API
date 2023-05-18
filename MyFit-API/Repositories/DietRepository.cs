@@ -108,7 +108,7 @@ namespace MyFit_API.Repositories
             DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd);
         }
 
-        internal object? SetFoodListDietOfUser(long idUser, DateTime date, Dictionary<string, List<Meal>> foodList)
+        internal object? SetFoodListOfUser(long idUser, DateTime date, Dictionary<string, List<Meal>> foodList)
         {
             string query = "UPDATE [Diet] SET [FoodList] = @_foodList WHERE IdUser = @_idUser AND Date = @_date";
             SqlCommand cmd = new SqlCommand(query);
