@@ -183,7 +183,7 @@ namespace MyFit_API.Repositories
             DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd);
         }
 
-        internal int CountAllGym()
+        internal int CountAllGyms()
         {
             string query = "SELECT COUNT * FROM [Gym]";
             SqlCommand cmd = new SqlCommand(query);
@@ -191,10 +191,12 @@ namespace MyFit_API.Repositories
             return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd);
         }
 
-        internal int CountGymStaffers()
+        internal int CountGymStaffers(long id)
         {
-            string query = "SELECT COUNT(s.IdUser) FROM [Gym] g JOIN [Staff] s ON g.IdStaff = s.Id";
+            string query = "SELECT COUNT(s.IdUser) FROM [Gym] g JOIN [Staff] s ON g.IdStaff = s.Id WHERE g.Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_id", id);
 
             return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd);
         }
