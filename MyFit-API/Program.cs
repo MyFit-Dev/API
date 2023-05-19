@@ -17,6 +17,14 @@ builder.Services.AddSingleton<UserController, UserController>();
 builder.Services.AddSingleton<UserService, UserService>();
 builder.Services.AddSingleton<UserRepository, UserRepository>();
 
+builder.Services.AddSingleton<PlanController, PlanController>();
+builder.Services.AddSingleton<PlanService, PlanService>();
+builder.Services.AddSingleton<PlanRepository, PlanRepository>();
+
+builder.Services.AddSingleton<DietController, DietController>();
+builder.Services.AddSingleton<DietService, DietService>();
+builder.Services.AddSingleton<DietRepository, DietRepository>();
+
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
 DatabaseInfo.ConnectionString = connectionString;
 

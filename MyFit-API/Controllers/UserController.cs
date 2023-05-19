@@ -122,7 +122,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("add")]
-        [HttpPut]
+        [HttpPost]
         public IActionResult AddUser(User? user)
         {
             if (user == null)
@@ -140,7 +140,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("setName")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult SetUserName(long id, string? name)
         {
             if (name == null)
@@ -158,7 +158,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("setSurname")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult SetUserSurname(long id, string? surname)
         {
             if (surname == null)
@@ -176,7 +176,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("setMail")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult SetUserMail(long id, string? mail)
         {
             if (mail == null)
@@ -194,7 +194,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("setState")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult SetUserState(long id, string? state)
         {
             if (state == null)
@@ -212,7 +212,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("setCity")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult SetUserCity(long id, string? city)
         {
             if (city == null)
@@ -230,7 +230,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("setPlan")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult SetUserSurname(long id, int? idPlan)
         {
             if (idPlan == null || idPlan < 0)
@@ -248,7 +248,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("setGym")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult SetUserGym(long id, int? idGym)
         {
 
@@ -264,7 +264,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("setIntermittentFasting")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult SetUserIntermittentFasting(long id, bool? intermittentFasting)
         {
             if (intermittentFasting == null)
