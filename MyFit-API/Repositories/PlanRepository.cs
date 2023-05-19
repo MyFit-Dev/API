@@ -94,12 +94,12 @@ namespace MyFit_API.Repositories
             return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal long CountPlans()
+        internal int CountPlans()
         {
             string query = "SELECT COUNT(*) FROM [Plan]";
             SqlCommand cmd = new SqlCommand(query);
 
-            return DatabaseManager<long>.GetInstance().MakeQueryOneScalarResult(cmd);
+            return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd);
         }
 
         internal long CountHowManyPlansById(byte id)

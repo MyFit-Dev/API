@@ -55,7 +55,7 @@ namespace MyFit_API.Services
             return plan.Price;
         }
 
-        public string GetPlanDescription(byte id)
+        public string? GetPlanDescription(byte id)
         {
             Plan? plan = _planRepository.GetPlanById(id);
 
@@ -63,6 +63,71 @@ namespace MyFit_API.Services
                 throw new PlanNotFoundException("Plan not foud");
 
             return plan.Description;
+        }
+
+        public void AddPlan(Plan plan)
+        {
+            _planRepository.AddPlan(plan);
+        }
+
+        public void SetPlanName(byte id, string name)
+        {
+            Plan? plan = _planRepository.GetPlanById(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not foud");
+
+            _planRepository.SetPlanName(id, name);
+        }
+
+        public void SetPlanValue(byte id, byte value)
+        {
+            Plan? plan = _planRepository.GetPlanById(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not foud");
+
+            _planRepository.SetPlanValue(id, value);
+        }
+
+        public void SetPlanPrice(byte id, float price)
+        {
+            Plan? plan = _planRepository.GetPlanById(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not foud");
+
+            _planRepository.SetPlanPrice(id, price);
+        }
+
+        public void SetPlanDescription(byte id, string description)
+        {
+            Plan? plan = _planRepository.GetPlanById(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not foud");
+
+            _planRepository.SetPlanDescription(id, description);
+        }
+
+        public object? DeletePlanById(byte id)
+        {
+            Plan? plan = _planRepository.GetPlanById(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not foud");
+
+            return _planRepository.DeletePlanById(id);
+        }
+
+        public int CountPlans()
+        {
+            return _planRepository.CountPlans();
+        }
+
+        public long CountHowManyPlansById(byte id)
+        {
+            return _planRepository.CountHowManyPlansById(id);
         }
 
     }
