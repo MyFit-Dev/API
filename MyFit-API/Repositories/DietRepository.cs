@@ -69,7 +69,7 @@ namespace MyFit_API.Repositories
             return DatabaseManager<List<string?>>.GetInstance().MakeQueryMoreResults(cmd);
         }
 
-        internal List<string?>? GetUserFoodListByDate(long idUser, DateTime date)
+        internal string? GetUserFoodListByDate(long idUser, DateTime date)
         {
             string query = "SELECT FoodList FROM [Diet] WHERE IdUser = @_idUser AND Date = @_date";
             SqlCommand cmd = new SqlCommand(query);
@@ -77,7 +77,7 @@ namespace MyFit_API.Repositories
             cmd.Parameters.AddWithValue("@_idUser", idUser);
             cmd.Parameters.AddWithValue("@_date", date.ToString("yyyy-MM-dd"));
 
-            return DatabaseManager<List<string?>>.GetInstance().MakeQueryMoreResults(cmd);
+            return DatabaseManager<string?>.GetInstance().MakeQueryMoreResults(cmd);
         }
 
         internal List<string?>? GetUserFoodListBetweenDates(long idUser, DateTime startDate, DateTime endDate)

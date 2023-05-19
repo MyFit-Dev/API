@@ -95,25 +95,19 @@ namespace MyFit_API.Services
             return _foodLists;
         }
 
-        public List<Dictionary<string, List<Meal>>> GetUserFoodListsByDate(long idUser, DateTime date)
+        public Dictionary<string, List<Meal>> GetUserFoodListsByDate(long idUser, DateTime date)
         {
             User? user = _userRepository.GetUserById(idUser);
 
             if (user == null)
                 throw new UserNotFoundException("User not found");
 
-            List<string>? foodLists = _dietRepository.GetUserFoodListByDate(idUser, date);
+            string? foodList = _dietRepository.GetUserFoodListByDate(idUser, date);
 
-            if (foodLists == null)
-                return new List<Dictionary<string, List<Meal>>>();
+            if (foodList == null)
+                return new Dictionary<string, List<Meal>>();
 
-            List<Dictionary<string, List<Meal>>>? _foodLists = new List<Dictionary<string, List<Meal>>>();
-
-            foreach (string foodList in foodLists)
-                if (foodList != null)
-                    _foodLists.Add(JsonConvert.DeserializeObject<Dictionary<string, List<Meal>>>(foodList));
-
-            return _foodLists;
+            return JsonConvert.DeserializeObject<Dictionary<string, List<Meal>>>(foodList);
         }
 
         public List<Dictionary<string, List<Meal>>> GetUserFoodListsBetweenDates(long idUser, DateTime startDate, DateTime endDate)
@@ -139,7 +133,8 @@ namespace MyFit_API.Services
 
         public void AddDiet(Diet diet)
         {
-            _dietRepository.AddDiet(diet);
+            if (_dietRepository.GetUserDietByDate(diet.IdUser, diet.Date) == null)
+                _dietRepository.AddDiet(diet);
         }
 
         public void AddFoodToFoodListOfUser(long idUser, DateTime date, Meal meal)
