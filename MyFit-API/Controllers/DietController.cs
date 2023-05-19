@@ -4,6 +4,7 @@ using MyFit_API.Exceptions.UserException;
 using MyFit_API.Services;
 using MyFit_Libs.Models;
 using MyFit_Libs.Utils;
+using System.Xml.Linq;
 
 namespace MyFit_API.Controllers
 {
@@ -154,6 +155,9 @@ namespace MyFit_API.Controllers
         [HttpPost]
         public IActionResult AddDiet(Diet diet)
         {
+            if (diet == null)
+                return BadRequest("{Diet} is null");
+
             _dietService.AddDiet(diet);
             return Ok();
         }
@@ -162,6 +166,11 @@ namespace MyFit_API.Controllers
         [HttpPut]
         public IActionResult AddFoodToUserFoodList(long idUser, DateTime date, Meal meal)
         {
+            if (date == null)
+                return BadRequest("{Date} is null");
+            else if (meal == null)
+                return BadRequest("{Meal} is null");
+
             try
             {
                 _dietService.AddFoodToFoodListOfUser(idUser, date, meal);
@@ -181,6 +190,11 @@ namespace MyFit_API.Controllers
         [HttpPut]
         public IActionResult RemoveFoodToUserFoodList(long idUser, DateTime date, Meal meal)
         {
+            if (date == null)
+                return BadRequest("{Date} is null");
+            else if (meal == null)
+                return BadRequest("{Meal} is null");
+
             try
             {
                 _dietService.RemoveFoodToFoodListOfUser(idUser, date, meal);

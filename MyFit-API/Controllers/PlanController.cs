@@ -2,6 +2,7 @@
 using MyFit_API.Exceptions.PlanException;
 using MyFit_API.Services;
 using MyFit_Libs.Models;
+using System.Xml.Linq;
 
 namespace MyFit_API.Controllers
 {
@@ -118,6 +119,9 @@ namespace MyFit_API.Controllers
         [HttpPost]
         public IActionResult GetPlan(Plan plan)
         {
+            if (plan == null)
+                return BadRequest("{Plan} is null");
+
             _planService.AddPlan(plan);
             return Ok(plan);
         }
@@ -126,6 +130,9 @@ namespace MyFit_API.Controllers
         [HttpPut]
         public IActionResult SetPlanName(byte id, string name)
         {
+            if (name == null)
+                return BadRequest("{Name} is null");
+
             try
             {
                 _planService.SetPlanName(id, name);
@@ -141,6 +148,8 @@ namespace MyFit_API.Controllers
         [HttpPut]
         public IActionResult SetPlanValue(byte id, byte value)
         {
+            if (value < 0)
+                return BadRequest("{Value} is invalid");
             try
             {
                 _planService.SetPlanValue(id, value);
@@ -156,6 +165,9 @@ namespace MyFit_API.Controllers
         [HttpPut]
         public IActionResult SetPlanPrice(byte id, float price)
         {
+            if (price < 0)
+                return BadRequest("{Price} is invalid");
+
             try
             {
                 _planService.SetPlanPrice(id, price);
@@ -171,6 +183,9 @@ namespace MyFit_API.Controllers
         [HttpPut]
         public IActionResult SetPlanDescription(byte id, string description)
         {
+            if (description == null)
+                return BadRequest("{Description} is null");
+
             try
             {
                 _planService.SetPlanDescription(id, description);
