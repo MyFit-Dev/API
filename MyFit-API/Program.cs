@@ -25,6 +25,10 @@ builder.Services.AddSingleton<DietController, DietController>();
 builder.Services.AddSingleton<DietService, DietService>();
 builder.Services.AddSingleton<DietRepository, DietRepository>();
 
+builder.Services.AddSingleton<GymController, GymController>();
+builder.Services.AddSingleton<GymService, GymService>();
+builder.Services.AddSingleton<GymRepository, GymRepository>();
+
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
 DatabaseInfo.ConnectionString = connectionString;
 
