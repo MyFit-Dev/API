@@ -90,6 +90,26 @@ namespace MyFit_API.Services
             _planRepository.SetPlanValue(id, value);
         }
 
+        public void SetPlanSubtitle(byte id, string subtitle)
+        {
+            Plan? plan = _planRepository.GetPlanById(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not foud");
+
+            _planRepository.SetPlanSubtitle(id, subtitle);
+        }
+
+        public void SetPlanColor(byte id, string color)
+        {
+            Plan? plan = _planRepository.GetPlanById(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not foud");
+
+            _planRepository.SetPlanColor(id, color);
+        }
+
         public void SetPlanPrice(byte id, float price)
         {
             Plan? plan = _planRepository.GetPlanById(id);
@@ -110,14 +130,14 @@ namespace MyFit_API.Services
             _planRepository.SetPlanDescription(id, description);
         }
 
-        public object? DeletePlanById(byte id)
+        public void DeletePlanById(byte id)
         {
             Plan? plan = _planRepository.GetPlanById(id);
 
             if (plan == null)
                 throw new PlanNotFoundException("Plan not foud");
 
-            return _planRepository.DeletePlanById(id);
+            _planRepository.DeletePlanById(id);
         }
 
         public int CountPlans()

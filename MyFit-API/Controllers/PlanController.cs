@@ -146,6 +146,42 @@ namespace MyFit_API.Controllers
             }
         }
 
+        [Route("setSubtitle")]
+        [HttpPut]
+        public IActionResult SetPlanSubtitle(byte id, string subtitle)
+        {
+            if (subtitle == null)
+                return BadRequest("{Subtitle} is null");
+
+            try
+            {
+                _planService.SetPlanSubtitle(id, subtitle);
+                return Ok();
+            }
+            catch (PlanNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [Route("setColor")]
+        [HttpPut]
+        public IActionResult SetPlanColor(byte id, string color)
+        {
+            if (color == null)
+                return BadRequest("{Color} is null");
+
+            try
+            {
+                _planService.SetPlanColor(id, color);
+                return Ok();
+            }
+            catch (PlanNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
         [Route("setValue")]
         [HttpPut]
         public IActionResult SetPlanValue(byte id, byte value)

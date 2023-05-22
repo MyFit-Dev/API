@@ -26,13 +26,15 @@ namespace MyFit_API.Repositories
 
         internal void AddPlan(Plan plan)
         {
-            string Name = plan.Name, Description = plan.Description;
+            string Name = plan.Name, Description = plan.Description, Subtitle = plan.Subtitle, Color = plan.Color; 
             byte Value = plan.Value;
             float Price = plan.Price;
 
-            string query = "INSERT INTO [Plan] ([Name],[Value],[Price],[Description]) VALUES (@_name,@_value,@_price,@_description)";
+            string query = "INSERT INTO [Plan] ([Name],[Subtitle],[Color][Value],[Price],[Description]) VALUES (@_name,@_subtitle,@_color@_value,@_price,@_description)";
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_name", Name);
+            cmd.Parameters.AddWithValue("@_subtitle", Subtitle);
+            cmd.Parameters.AddWithValue("@_color", Color);
             cmd.Parameters.AddWithValue("@_value", Value);
             cmd.Parameters.AddWithValue("@_price", Price);
             cmd.Parameters.AddWithValue("@_description", Description);
@@ -40,7 +42,7 @@ namespace MyFit_API.Repositories
             DatabaseManager<object>.GetInstance().MakeQueryNoResult(cmd);
         }
 
-        internal object? SetPlanName(byte id, string name)
+        internal void SetPlanName(byte id, string name)
         {
             string query = "UPDATE [Plan] SET Name = @_name WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
@@ -48,10 +50,32 @@ namespace MyFit_API.Repositories
             cmd.Parameters.AddWithValue("@_id", id);
             cmd.Parameters.AddWithValue("@_name", name);
 
-            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
+            DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal object? SetPlanValue(byte id, byte value)
+        internal void SetPlanSubtitle(byte id, string subtitle)
+        {
+            string query = "UPDATE [Plan] SET Subtitle = @_subtitle WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_id", id);
+            cmd.Parameters.AddWithValue("@_subtitle", subtitle);
+
+            DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
+        }
+
+        internal void SetPlanColor(byte id, string color)
+        {
+            string query = "UPDATE [Plan] SET Color = @_color WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_id", id);
+            cmd.Parameters.AddWithValue("@_color", color);
+
+            DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
+        }
+
+        internal void SetPlanValue(byte id, byte value)
         {
             string query = "UPDATE [Plan] SET Value = @_value WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
@@ -59,10 +83,10 @@ namespace MyFit_API.Repositories
             cmd.Parameters.AddWithValue("@_id", id);
             cmd.Parameters.AddWithValue("@_value", value);
 
-            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
+            DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal object? SetPlanPrice(byte id, float price)
+        internal void SetPlanPrice(byte id, float price)
         {
             string query = "UPDATE [Plan] SET Price = @_price WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
@@ -70,10 +94,10 @@ namespace MyFit_API.Repositories
             cmd.Parameters.AddWithValue("@_id", id);
             cmd.Parameters.AddWithValue("@_price", price);
 
-            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
+            DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal object? SetPlanDescription(byte id, string description)
+        internal void SetPlanDescription(byte id, string description)
         {
             string query = "UPDATE [Plan] SET Description = @_description WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
@@ -81,17 +105,17 @@ namespace MyFit_API.Repositories
             cmd.Parameters.AddWithValue("@_id", id);
             cmd.Parameters.AddWithValue("@_description", description);
 
-            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
+            DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
-        internal object? DeletePlanById(byte id)
+        internal void DeletePlanById(byte id)
         {
             string query = "DELETE FROM [Plan] WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
 
             cmd.Parameters.AddWithValue("@_id", id);
 
-            return DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
+            DatabaseManager<object?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
         internal int CountPlans()
@@ -104,7 +128,7 @@ namespace MyFit_API.Repositories
 
         internal long CountHowManyPlansById(byte id)
         {
-            string query = "SELECT COUNT(*) FROM [User] WHERE Id = @_id";
+            string query = "SELECT COUNT(*) FROM [User] WHERE IdPlan = @_id";
             SqlCommand cmd = new SqlCommand(query);
 
             cmd.Parameters.AddWithValue("@_id", id);
