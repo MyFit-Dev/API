@@ -72,6 +72,36 @@ namespace MyFit_API.Controllers
             }
         }
 
+        [Route("getSubtitle")]
+        [HttpGet]
+        public IActionResult GetPlanSubtitle(byte id)
+        {
+            try
+            {
+                string planName = _planService.GetPlanSubtitle(id);
+                return Ok(planName);
+            }
+            catch (PlanNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [Route("getColor")]
+        [HttpGet]
+        public IActionResult GetPlanColor(byte id)
+        {
+            try
+            {
+                string planName = _planService.GetPlanColor(id);
+                return Ok(planName);
+            }
+            catch (PlanNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
         [Route("getValue")]
         [HttpGet]
         public IActionResult GetPlanValue(byte id)

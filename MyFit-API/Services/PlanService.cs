@@ -35,6 +35,26 @@ namespace MyFit_API.Services
             return plan.Name;
         }
 
+        public string GetPlanSubtitle(byte id)
+        {
+            Plan? plan = _planRepository.GetPlanById(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not foud");
+
+            return plan.Subtitle;
+        }
+
+        public string GetPlanColor(byte id)
+        {
+            Plan? plan = _planRepository.GetPlanById(id);
+
+            if (plan == null)
+                throw new PlanNotFoundException("Plan not foud");
+
+            return plan.Color;
+        }
+
         public byte GetPlanValue(byte id)
         {
             Plan? plan = _planRepository.GetPlanById(id);
