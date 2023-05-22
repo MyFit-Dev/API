@@ -9,7 +9,7 @@ using MyFit_Libs.Models;
 namespace MyFit_API.Controllers
 {
 
-    [EnableCors("DefaultPolicy")]
+    [EnableCors]
     [ApiController]
     [Route("/api/User")]
     public class UserController : ControllerBase

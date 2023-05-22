@@ -7,7 +7,7 @@ using MyFit_Libs.Models;
 namespace MyFit_API.Controllers
 {
 
-    [EnableCors("DefaultPolicy")]
+    [EnableCors]
     [ApiController]
     [Route("/api/Gym")]
     public class GymController : ControllerBase

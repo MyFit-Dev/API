@@ -8,7 +8,7 @@ using System.Xml.Linq;
 namespace MyFit_API.Controllers
 {
 
-    [EnableCors("DefaultPolicy")]
+    [EnableCors]
     [ApiController]
     [Route("/api/Plan")]
     public class PlanController : ControllerBase

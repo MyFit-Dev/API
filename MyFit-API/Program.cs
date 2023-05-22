@@ -38,16 +38,7 @@ builder.Services.AddSingleton<GymRepository, GymRepository>();
  *          https://learn.microsoft.com/it-it/aspnet/core/security/cors?view=aspnetcore-7.0
  */
 
-builder.Services.AddCors(options => {
-    options.AddPolicy(name: "DefaulPolicy",
-        policy =>
-        {
-            policy.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                      .AllowAnyHeader();
-        });
-
-});
+builder.Services.AddCors();
 
 /*
  *          Database Connector
@@ -68,7 +59,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("DefaulPolicy");
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.UseAuthorization();
 
