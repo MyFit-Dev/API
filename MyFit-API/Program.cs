@@ -1,14 +1,18 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using MtFit_API.Database;
 using MyFit_API.Controllers;
 using MyFit_API.Repositories;
 using MyFit_API.Services;
+using System.Web.Http.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+/*
+ *          Services / Repository & Controllers registration
+ */
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -29,9 +33,29 @@ builder.Services.AddSingleton<GymController, GymController>();
 builder.Services.AddSingleton<GymService, GymService>();
 builder.Services.AddSingleton<GymRepository, GymRepository>();
 
+/*
+ *          CORS Policy
+ */
+
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: "DefaulPolicy",
+        policy =>
+        {
+            policy.WithOrigins("*")
+                    .WithMethods("*")
+                    .WithHeaders("*");
+        });
+
+});
+
+/*
+ *          Database Connector
+ */
+
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
 DatabaseInfo.ConnectionString = connectionString;
 
+//Builder
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,6 +66,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 
