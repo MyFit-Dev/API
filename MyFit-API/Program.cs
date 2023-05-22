@@ -35,6 +35,7 @@ builder.Services.AddSingleton<GymRepository, GymRepository>();
 
 /*
  *          CORS Policy
+ *          https://learn.microsoft.com/it-it/aspnet/core/security/cors?view=aspnetcore-7.0
  */
 
 builder.Services.AddCors(options => {

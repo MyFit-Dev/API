@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using MyFit_API.Exceptions.GymException;
 using MyFit_API.Exceptions.PlanException;
 using MyFit_API.Exceptions.UserException;
@@ -8,6 +9,7 @@ using MyFit_Libs.Models;
 namespace MyFit_API.Controllers
 {
 
+    [EnableCors("DefaultPolicy")]
     [ApiController]
     [Route("/api/User")]
     public class UserController : ControllerBase

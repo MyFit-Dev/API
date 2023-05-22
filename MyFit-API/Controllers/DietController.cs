@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using MyFit_API.Exceptions.DietException;
 using MyFit_API.Exceptions.UserException;
 using MyFit_API.Services;
@@ -8,6 +9,7 @@ using System.Xml.Linq;
 
 namespace MyFit_API.Controllers
 {
+    [EnableCors("DefaultPolicy")]
     [ApiController]
     [Route("/api/Diet")]
     public class DietController : ControllerBase

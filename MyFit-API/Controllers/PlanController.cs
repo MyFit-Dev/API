@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using MyFit_API.Exceptions.PlanException;
 using MyFit_API.Services;
 using MyFit_Libs.Models;
@@ -7,6 +8,7 @@ using System.Xml.Linq;
 namespace MyFit_API.Controllers
 {
 
+    [EnableCors("DefaultPolicy")]
     [ApiController]
     [Route("/api/Plan")]
     public class PlanController : ControllerBase
