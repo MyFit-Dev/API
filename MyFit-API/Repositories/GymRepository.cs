@@ -15,6 +15,16 @@ namespace MyFit_API.Repositories
             return DatabaseManager<List<Gym>>.GetInstance().MakeQueryMoreResults(cmd);
         }
 
+        internal bool ExistsGym(long id)
+        {
+            string query = "SELECT COUNT(Id) FROM [Gym] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd) > 0;
+        }
+
         internal Gym? GetGym(long id)
         {
             string query = "SELECT * FROM [Gym] WHERE Id = @_id";

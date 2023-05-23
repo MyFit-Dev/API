@@ -18,6 +18,27 @@ namespace MyFit_API.Repositories
             return DatabaseManager<List<Diet>>.GetInstance().MakeQueryMoreResults(cmd);
         }
 
+        internal bool ExistsDietById(long id)
+        {
+            string query = "SELECT COUNT(Id) FROM [Diet] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd) > 0;
+        }
+
+        internal bool ExistsDietByUserAndDate(long idUser, DateTime date)
+        {
+            string query = "SELECT COUNT(Id) FROM [Diet] WHERE IdUser = @_idUser AND Date = @_date";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_idUser", idUser);
+            cmd.Parameters.AddWithValue("@_date", date.ToString("yyyy-MM-dd"));
+
+            return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd) > 0;
+        }
+
         internal List<Diet>? GetAllUserDiets(long idUser) 
         {
             string query = "SELECT * FROM [Diet] WHERE IdUser = @_id";
@@ -30,10 +51,10 @@ namespace MyFit_API.Repositories
 
         internal Diet? GetUserDietByDate(long idUser, DateTime date)
         {
-            string query = "SELECT * FROM [Diet] WHERE IdUser = @_id AND Date = @_date";
+            string query = "SELECT * FROM [Diet] WHERE IdUser = @_idUser AND Date = @_date";
             SqlCommand cmd = new SqlCommand(query);
             
-            cmd.Parameters.AddWithValue("@_id", idUser);
+            cmd.Parameters.AddWithValue("@_idUser", idUser);
             cmd.Parameters.AddWithValue("@_date", date.ToString("yyyy-MM-dd"));
 
             return DatabaseManager<Diet?>.GetInstance().MakeQueryOneResult(cmd);

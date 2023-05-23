@@ -7,12 +7,22 @@ namespace MyFit_API.Repositories
     public class FormRepository
     {
 
-        internal List<Form>? GetAllForm()
+        internal List<Form>? GetAllForms()
         {
             string query = "SELECT * FROM [Form]";
             SqlCommand cmd = new SqlCommand(query);
 
             return DatabaseManager<List<Form>?>.GetInstance().MakeQueryMoreResults(cmd);
+        }
+
+        internal bool ExistsForm(long id)
+        {
+            string query = "SELECT COUNT(Id) FROM [Form] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd) > 0;
         }
 
         internal Form? GetForm(long id)
@@ -110,6 +120,24 @@ namespace MyFit_API.Repositories
             cmd.Parameters.AddWithValue("@_idUser", idUser);
 
             DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd);
+        }
+
+        internal int CountUserForms(long idUser)
+        {
+            string query = "SELECT COUNT(Id) FROM [Form] WHERE IdUser = @_idUser";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_idUser", idUser);
+
+            return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd);
+        }
+
+        internal long CountForms()
+        {
+            string query = "SELECT COUNT(Id) FROM [Form]";
+            SqlCommand cmd = new SqlCommand(query);
+
+            return DatabaseManager<long>.GetInstance().MakeQueryOneScalarResult(cmd);
         }
 
     }

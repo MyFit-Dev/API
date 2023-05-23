@@ -15,6 +15,16 @@ namespace MyFit_API.Repositories
             return DatabaseManager<List<Plan>>.GetInstance().MakeQueryMoreResults(cmd);
         }
 
+        internal bool ExistsForm(long id)
+        {
+            string query = "SELECT COUNT(Id) FROM [Plan] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd) > 0;
+        }
+
         internal Plan? GetPlanById(byte id)
         {
             string query = "SELECT * FROM [Plan] WHERE Id = @_id";
@@ -22,6 +32,60 @@ namespace MyFit_API.Repositories
             cmd.Parameters.AddWithValue("@_id", id);
 
             return DatabaseManager<Plan>.GetInstance().MakeQueryOneResult(cmd);
+        }
+
+        internal string? GetPlanName(byte id)
+        {
+            string query = "SELECT Name FROM [Plan] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<string?>.GetInstance().MakeQueryOneResult(cmd);
+        }
+
+        internal string? GetPlanSubtitle(byte id)
+        {
+            string query = "SELECT Subtitle FROM [Plan] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<string?>.GetInstance().MakeQueryOneResult(cmd);
+        }
+
+        internal string? GetPlanColor(byte id)
+        {
+            string query = "SELECT Color FROM [Plan] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<string?>.GetInstance().MakeQueryOneResult(cmd);
+        }
+
+        internal byte? GetPlanValue(byte id)
+        {
+            string query = "SELECT Value FROM [Plan] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<byte?>.GetInstance().MakeQueryOneResult(cmd);
+        }
+
+        internal float? GetPlanPrice(byte id)
+        {
+            string query = "SELECT Price FROM [Plan] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<float?>.GetInstance().MakeQueryOneResult(cmd);
+        }
+
+        internal string? GetPlanDescription(byte id)
+        {
+            string query = "SELECT Description FROM [Plan] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<string?>.GetInstance().MakeQueryOneResult(cmd);
         }
 
         internal void AddPlan(Plan plan)

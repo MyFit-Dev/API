@@ -14,6 +14,26 @@ namespace MyFit_API.Repositories
             return DatabaseManager<List<User>>.GetInstance().MakeQueryMoreResults(cmd);
         }
 
+        internal bool ExistsUserById(long id)
+        {
+            string query = "SELECT COUNT(Id) FROM [User] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd) > 0;
+        }
+
+        internal bool ExistsUserByMail(string mail)
+        {
+            string query = "SELECT COUNT(Id) FROM [User] WHERE Mail = @_mail";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_mail", mail);
+
+            return DatabaseManager<int>.GetInstance().MakeQueryOneScalarResult(cmd) > 0;
+        }
+
         internal User? GetUserById(long id)
         {
             string query = "SELECT * FROM [User] WHERE Id = @_id";
