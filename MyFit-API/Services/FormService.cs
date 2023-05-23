@@ -17,7 +17,7 @@ namespace MyFit_API.Services
             return forms != null ? forms : new List<Form>();
         }
 
-        public Form GetForm(int id)
+        public Form GetForm(long id)
         {
             Form? form = _formRepository.GetForm(id);
 
@@ -44,6 +44,9 @@ namespace MyFit_API.Services
 
         public string? GetCustomExercisesOfForm(long id)
         {
+            if (!_formRepository.ExistsForm(id))
+                throw new FormNotFoundException("Form not found");
+
             return _formRepository.GetCustomExercisesOfForm(id);
         }
 
@@ -76,7 +79,7 @@ namespace MyFit_API.Services
             _formRepository.DeleteForm(id);
         }
 
-        public void DeleteUserForm(long idUser)
+        public void DeleteUserForms(long idUser)
         {
             if (!_userRepository.ExistsUserById(idUser))
                 throw new FormNotFoundException("User not found");
