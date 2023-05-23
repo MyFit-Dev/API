@@ -30,6 +30,14 @@ namespace MyFit_API
             builder.Services.AddSingleton<FormService, FormService>();
             builder.Services.AddSingleton<FormRepository, FormRepository>();
 
+            builder.Services.AddSingleton<CustomExerciseController, CustomExerciseController>();
+            builder.Services.AddSingleton<CustomExerciseService, CustomExerciseService>();
+            builder.Services.AddSingleton<CustomExerciseRepository, CustomExerciseRepository>();
+
+            builder.Services.AddSingleton<GenericExerciseController, GenericExerciseController>();
+            builder.Services.AddSingleton<GenericExerciseService, GenericExerciseService>();
+            builder.Services.AddSingleton<GenericExerciseRepository, GenericExerciseRepository>();
+
         }
 
     }
