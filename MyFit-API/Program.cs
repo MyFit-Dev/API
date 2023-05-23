@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using MtFit_API.Database;
+using MyFit_API;
 using MyFit_API.Controllers;
 using MyFit_API.Repositories;
 using MyFit_API.Services;
@@ -16,22 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-builder.Services.AddSingleton<UserController, UserController>();
-builder.Services.AddSingleton<UserService, UserService>();
-builder.Services.AddSingleton<UserRepository, UserRepository>();
-
-builder.Services.AddSingleton<PlanController, PlanController>();
-builder.Services.AddSingleton<PlanService, PlanService>();
-builder.Services.AddSingleton<PlanRepository, PlanRepository>();
-
-builder.Services.AddSingleton<DietController, DietController>();
-builder.Services.AddSingleton<DietService, DietService>();
-builder.Services.AddSingleton<DietRepository, DietRepository>();
-
-builder.Services.AddSingleton<GymController, GymController>();
-builder.Services.AddSingleton<GymService, GymService>();
-builder.Services.AddSingleton<GymRepository, GymRepository>();
+new SwaggerControllerSingletonRegistrator(builder);
 
 /*
  *          CORS Policy
