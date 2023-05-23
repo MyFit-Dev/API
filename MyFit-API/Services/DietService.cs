@@ -25,10 +25,9 @@ namespace MyFit_API.Services
 
         public List<Diet> GetAllUserDiets(long idUser)
         {
-            User? user = _userRepository.GetUserById(idUser);
             List<Diet?>? diets = _dietRepository.GetAllDiets();
 
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
             if (diets == null || diets.Count == 0)
@@ -39,10 +38,9 @@ namespace MyFit_API.Services
 
         public Diet GetUserDietByDate(long idUser, DateTime date)
         {
-            User? user = _userRepository.GetUserById(idUser);
             Diet? diet = _dietRepository.GetUserDietByDate(idUser, date);
 
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
             if (diet == null)
@@ -76,9 +74,7 @@ namespace MyFit_API.Services
 
         public List<Dictionary<string, List<Meal>>> GetAllUserFoodLists(long idUser)
         {
-            User? user = _userRepository.GetUserById(idUser);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
             List<string>? foodLists = _dietRepository.GetAllUserFoodLists(idUser);
@@ -97,9 +93,7 @@ namespace MyFit_API.Services
 
         public Dictionary<string, List<Meal>> GetUserFoodListsByDate(long idUser, DateTime date)
         {
-            User? user = _userRepository.GetUserById(idUser);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
             string? foodList = _dietRepository.GetUserFoodListByDate(idUser, date);
@@ -112,9 +106,7 @@ namespace MyFit_API.Services
 
         public List<Dictionary<string, List<Meal>>> GetUserFoodListsBetweenDates(long idUser, DateTime startDate, DateTime endDate)
         {
-            User? user = _userRepository.GetUserById(idUser);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
             List<string>? foodLists = _dietRepository.GetUserFoodListBetweenDates(idUser, startDate, endDate);
@@ -133,15 +125,13 @@ namespace MyFit_API.Services
 
         public void AddDiet(Diet diet)
         {
-            if (_dietRepository.GetUserDietByDate(diet.IdUser, diet.Date) == null)
+            if (!_dietRepository.ExistsDietByUserAndDate(diet.IdUser, diet.Date))
                 _dietRepository.AddDiet(diet);
         }
 
         public void AddFoodToFoodListOfUser(long idUser, DateTime date, Meal meal)
         {
-            User? user = _userRepository.GetUserById(idUser);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
             Diet? diet = _dietRepository.GetUserDietByDate(idUser, date);
@@ -162,10 +152,9 @@ namespace MyFit_API.Services
 
         public void RemoveFoodToFoodListOfUser(long idUser, DateTime date, Meal meal)
         {
-            User? user = _userRepository.GetUserById(idUser);
             string dateTime = date.ToString("HH:mm");
 
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
             Diet? diet = _dietRepository.GetUserDietByDate(idUser, date);
@@ -198,13 +187,11 @@ namespace MyFit_API.Services
 
         public void DeleteDietOfUserAndDate(long idUser, DateTime date)
         {
-            User? user = _userRepository.GetUserById(idUser);
-            Diet? diet = _dietRepository.GetUserDietByDate(idUser, date);
 
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
-            if (diet == null)
+            if (!_dietRepository.ExistsDietByUserAndDate(idUser, date))
                 throw new DietNotFoundException("Diet not found");
 
             _dietRepository.DeleteDietOfUserAndDate(idUser, date);
@@ -212,9 +199,7 @@ namespace MyFit_API.Services
 
         public void DeleteDietsOfUser(long idUser) 
         {
-            User? user = _userRepository.GetUserById(idUser);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
             _dietRepository.DeleteDietsOfUser(idUser);
@@ -222,9 +207,7 @@ namespace MyFit_API.Services
 
         public void DeleteDietsOfUserBetweenDate(long idUser, DateTime startDate, DateTime endDate)
         {
-            User? user = _userRepository.GetUserById(idUser);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(idUser))
                 throw new UserNotFoundException("User not found");
 
             _dietRepository.DeleteDietsOfUserBetweenDate(idUser, startDate, endDate);

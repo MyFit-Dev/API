@@ -1,6 +1,7 @@
 ﻿using MyFit_API.Exceptions.GymException;
 using MyFit_API.Repositories;
 using MyFit_Libs.Models;
+using System.Xml.Linq;
 
 namespace MyFit_API.Services
 {
@@ -32,70 +33,49 @@ namespace MyFit_API.Services
         {
             string? name = _gymRepository.GetGymName(id);
 
-            if (name == null)
-                throw new GymNotFoundException("Gym not found");
-
-            return name;
+            return name != null ? name : throw new GymNotFoundException("Gym not found");
         }
 
         public string GetGymState(long id)
         {
             string? state = _gymRepository.GetGymState(id);
 
-            if (state == null)
-                throw new GymNotFoundException("Gym not found");
-
-            return state;
+            return state != null ? state : throw new GymNotFoundException("Gym not found");
         }
 
         public string GetGymCity(long id)
         {
             string? city = _gymRepository.GetGymCity(id);
 
-            if (city == null)
-                throw new GymNotFoundException("Gym not found");
-
-            return city;
+            return city != null ? city : throw new GymNotFoundException("Gym not found");
         }
 
         public string GetGymStreet(long id)
         {
             string? street = _gymRepository.GetGymStreet(id);
 
-            if (street == null)
-                throw new GymNotFoundException("Gym not found");
-
-            return street;
+            return street != null ? street : throw new GymNotFoundException("Gym not found");
         }
 
         public int? GetGymCivicNumber(long id)
         {
             int? civicNumber = _gymRepository.GetGymCivicNumber(id);
 
-            if (civicNumber == null)
-                throw new GymNotFoundException("Gym not found");
-
-            return civicNumber;
+            return civicNumber != null ? civicNumber : throw new GymNotFoundException("Gym not found");
         }
 
         public int? GetGymCAP(long id)
         {
             int? cap = _gymRepository.GetGymCAP(id);
 
-            if (cap == null)
-                throw new GymNotFoundException("Gym not found");
-
-            return cap;
+            return cap != null ? cap : throw new GymNotFoundException("Gym not found");
         }
 
         public long? GetGymIdStaff(long id)
         {
             long? idStaff = _gymRepository.GetGymIdStaff(id);
 
-            if (idStaff == null)
-                throw new GymNotFoundException("Gym not found");
-
-            return idStaff;
+            return idStaff != null ? idStaff : throw new GymNotFoundException("Gym not found");
         }
 
         public void AddGym(Gym gym)
@@ -105,9 +85,7 @@ namespace MyFit_API.Services
 
         public void SetGymName(long id, string name)
         {
-            Gym? gym = _gymRepository.GetGym(id);
-
-            if (gym == null)
+            if (!_gymRepository.ExistsGym(id))
                 throw new GymNotFoundException("Gym not found");
 
             _gymRepository.SetGymName(id, name);
@@ -115,9 +93,7 @@ namespace MyFit_API.Services
 
         public void SetGymState(long id, string state)
         {
-            Gym? gym = _gymRepository.GetGym(id);
-
-            if (gym == null)
+            if (!_gymRepository.ExistsGym(id))
                 throw new GymNotFoundException("Gym not found");
 
             _gymRepository.SetGymState(id, state);
@@ -125,9 +101,7 @@ namespace MyFit_API.Services
 
         public void SetGymCity(long id, string city)
         {
-            Gym? gym = _gymRepository.GetGym(id);
-
-            if (gym == null)
+            if (!_gymRepository.ExistsGym(id))
                 throw new GymNotFoundException("Gym not found");
 
             _gymRepository.SetGymCity(id, city);
@@ -135,9 +109,7 @@ namespace MyFit_API.Services
 
         public void SetGymStreet(long id, string street)
         {
-            Gym? gym = _gymRepository.GetGym(id);
-
-            if (gym == null)
+            if (!_gymRepository.ExistsGym(id))
                 throw new GymNotFoundException("Gym not found");
 
             _gymRepository.SetGymStreet(id, street);
@@ -145,9 +117,7 @@ namespace MyFit_API.Services
 
         public void SetGymCivicNumber(long id, int civicNumber)
         {
-            Gym? gym = _gymRepository.GetGym(id);
-
-            if (gym == null)
+            if (!_gymRepository.ExistsGym(id))
                 throw new GymNotFoundException("Gym not found");
 
             _gymRepository.SetGymCivicNumber(id, civicNumber);
@@ -155,9 +125,7 @@ namespace MyFit_API.Services
 
         public void SetGymCAP(long id, int cap)
         {
-            Gym? gym = _gymRepository.GetGym(id);
-
-            if (gym == null)
+            if (!_gymRepository.ExistsGym(id))
                 throw new GymNotFoundException("Gym not found");
 
             _gymRepository.SetGymCAP(id, cap);
@@ -165,9 +133,7 @@ namespace MyFit_API.Services
 
         public void DeleteGym(long id) 
         {
-            Gym? gym = _gymRepository.GetGym(id);
-
-            if (gym == null)
+            if (!_gymRepository.ExistsGym(id))
                 throw new GymNotFoundException("Gym not found");
 
             _gymRepository.DeleteGym(id);
@@ -180,9 +146,7 @@ namespace MyFit_API.Services
 
         public int CountGymStaffers(long id)
         {
-            Gym? gym = _gymRepository.GetGym(id);
-
-            if (gym == null)
+            if (!_gymRepository.ExistsGym(id))
                 throw new GymNotFoundException("Gym not found");
 
             return _gymRepository.CountGymStaffers(id);

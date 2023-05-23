@@ -75,102 +75,82 @@ namespace MyFit_API.Services
 
         public void SetUserName(long id, string name)
         {
+            if (!_userRepository.ExistsUserById(id))
+                throw new UserNotFoundException("User not found");
+
             _userRepository.SetUserName(id, name);
-
-            User? user = _userRepository.GetUserById(id);
-
-            if (user == null)
-                throw new UserNotFoundException("User not found"); 
         }
 
         public void SetUserSurname(long id, string surname)
         {
-            _userRepository.SetUserSurname(id, surname);
-
-            User? user = _userRepository.GetUserById(id);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(id))
                 throw new UserNotFoundException("User not found");
+
+            _userRepository.SetUserSurname(id, surname);
         }
 
         public void SetUserMail(long id, string mail)
         {
-            _userRepository.SetUserMail(id, mail);
-
-            User? user = _userRepository.GetUserById(id);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(id))
                 throw new UserNotFoundException("User not found");
+
+            _userRepository.SetUserMail(id, mail);
         }
 
         public void SetUserState(long id, string state)
         {
-            _userRepository.SetUserState(id, state);
-
-            User? user = _userRepository.GetUserById(id);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(id))
                 throw new UserNotFoundException("User not found");
+
+            _userRepository.SetUserState(id, state);
         }
 
         public void SetUserCity(long id, string city)
         {
-            _userRepository.SetUserCity(id, city);
-
-            User? user = _userRepository.GetUserById(id);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(id))
                 throw new UserNotFoundException("User not found");
+
+            _userRepository.SetUserCity(id, city);
         }
 
         public void SetUserPlan(long id, int? idPlan)
         {
-            _userRepository.SetUserPlan(id, idPlan);
-
-            User? user = _userRepository.GetUserById(id);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(id))
                 throw new UserNotFoundException("User not found");
+
+            _userRepository.SetUserPlan(id, idPlan);
         }
 
         public void SetUserGym(long id, int? idGym)
         {
-            _userRepository.SetUserGym(id, idGym);
-
-            User? user = _userRepository.GetUserById(id);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(id))
                 throw new UserNotFoundException("User not found");
+
+            _userRepository.SetUserGym(id, idGym);
         }
 
         public void SetUserIntermittentFasting(long id, bool? intermittentFasting)
         {
-            _userRepository.SetUserIntermittentFasting(id, intermittentFasting);
-
-            User? user = _userRepository.GetUserById(id);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(id))
                 throw new UserNotFoundException("User not found");
+
+            _userRepository.SetUserIntermittentFasting(id, intermittentFasting);
         }
 
         public void DeleteUserById(long id)
         {
-            _userRepository.DeleteUserById(id);
-
-            User? user = _userRepository.GetUserById(id);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserById(id))
                 throw new UserNotFoundException("User not found");
+
+            _userRepository.DeleteUserById(id);
         }
 
         public void DeleteUserByMail(string mail)
         {
-            _userRepository.DeleteUserByMail(mail);
-
-            User? user = _userRepository.GetUserByMail(mail);
-
-            if (user == null)
+            if (!_userRepository.ExistsUserByMail(mail))
                 throw new UserNotFoundException("User not found");
+
+            _userRepository.DeleteUserByMail(mail);
         }
 
         public long CountUsers()

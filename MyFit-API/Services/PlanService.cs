@@ -27,62 +27,44 @@ namespace MyFit_API.Services
 
         public string GetPlanName(byte id)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
+            string? Name = _planRepository.GetPlanName(id);
 
-            if (plan == null)
-                throw new PlanNotFoundException("Plan not foud");
-
-            return plan.Name;
+            return Name != null ? Name : throw new PlanNotFoundException("Plan not found");
         }
 
         public string GetPlanSubtitle(byte id)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
+            string? Subtitle = _planRepository.GetPlanSubtitle(id);
 
-            if (plan == null)
-                throw new PlanNotFoundException("Plan not foud");
-
-            return plan.Subtitle;
+            return Subtitle != null ? Subtitle : throw new PlanNotFoundException("Plan not found");
         }
 
         public string GetPlanColor(byte id)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
+            string? Color = _planRepository.GetPlanColor(id);
 
-            if (plan == null)
-                throw new PlanNotFoundException("Plan not foud");
-
-            return plan.Color;
+            return Color != null ? Color : throw new PlanNotFoundException("Plan not found");
         }
 
         public byte GetPlanValue(byte id)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
+            byte? Value = _planRepository.GetPlanValue(id);
 
-            if (plan == null)
-                throw new PlanNotFoundException("Plan not foud");
-
-            return plan.Value;
+            return (byte)(Value != null ? Value : throw new PlanNotFoundException("Plan not found"));
         }
 
         public float GetPlanPrice(byte id)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
+            float? Price = _planRepository.GetPlanPrice(id);
 
-            if (plan == null)
-                throw new PlanNotFoundException("Plan not foud");
-
-            return plan.Price;
+            return (float)(Price != null ? Price : throw new PlanNotFoundException("Plan not found"));
         }
 
         public string? GetPlanDescription(byte id)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
+            string? Description = _planRepository.GetPlanDescription(id);
 
-            if (plan == null)
-                throw new PlanNotFoundException("Plan not foud");
-
-            return plan.Description;
+            return Description != null ? Description : throw new PlanNotFoundException("Plan not found");
         }
 
         public void AddPlan(Plan plan)
@@ -92,9 +74,7 @@ namespace MyFit_API.Services
 
         public void SetPlanName(byte id, string name)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
-
-            if (plan == null)
+            if (!_planRepository.ExistsForm(id))
                 throw new PlanNotFoundException("Plan not foud");
 
             _planRepository.SetPlanName(id, name);
@@ -102,9 +82,7 @@ namespace MyFit_API.Services
 
         public void SetPlanValue(byte id, byte value)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
-
-            if (plan == null)
+            if (!_planRepository.ExistsForm(id))
                 throw new PlanNotFoundException("Plan not foud");
 
             _planRepository.SetPlanValue(id, value);
@@ -112,9 +90,7 @@ namespace MyFit_API.Services
 
         public void SetPlanSubtitle(byte id, string subtitle)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
-
-            if (plan == null)
+            if (!_planRepository.ExistsForm(id))
                 throw new PlanNotFoundException("Plan not foud");
 
             _planRepository.SetPlanSubtitle(id, subtitle);
@@ -122,9 +98,7 @@ namespace MyFit_API.Services
 
         public void SetPlanColor(byte id, string color)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
-
-            if (plan == null)
+            if (!_planRepository.ExistsForm(id))
                 throw new PlanNotFoundException("Plan not foud");
 
             _planRepository.SetPlanColor(id, color);
@@ -132,9 +106,7 @@ namespace MyFit_API.Services
 
         public void SetPlanPrice(byte id, float price)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
-
-            if (plan == null)
+            if (!_planRepository.ExistsForm(id))
                 throw new PlanNotFoundException("Plan not foud");
 
             _planRepository.SetPlanPrice(id, price);
@@ -142,9 +114,7 @@ namespace MyFit_API.Services
 
         public void SetPlanDescription(byte id, string description)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
-
-            if (plan == null)
+            if (!_planRepository.ExistsForm(id))
                 throw new PlanNotFoundException("Plan not foud");
 
             _planRepository.SetPlanDescription(id, description);
@@ -152,9 +122,7 @@ namespace MyFit_API.Services
 
         public void DeletePlanById(byte id)
         {
-            Plan? plan = _planRepository.GetPlanById(id);
-
-            if (plan == null)
+            if (!_planRepository.ExistsForm(id))
                 throw new PlanNotFoundException("Plan not foud");
 
             _planRepository.DeletePlanById(id);
