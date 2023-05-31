@@ -17,7 +17,7 @@ namespace MyFit_API.Repositories
 
         internal List<Food>? GetSimilarFoods(string name, int results)
         {
-            string query = "SELECT TOP @_results * FROM [Food] WHERE Name LIKE '%@_name%'";
+            string query = results > 0 ? "SELECT TOP @_results * FROM [Food] WHERE Name LIKE %@_name%" : "SELECT * FROM [Food] WHERE Name LIKE %@_name%";
             SqlCommand cmd = new SqlCommand(query);
 
             cmd.Parameters.AddWithValue("@_results", results);

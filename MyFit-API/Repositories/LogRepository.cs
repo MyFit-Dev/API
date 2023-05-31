@@ -15,6 +15,16 @@ namespace MyFit_API.Repositories
             return DatabaseManager<List<Log>>.GetInstance().MakeQueryMoreResults(cmd);
         }
 
+        internal bool ExistsLog(long id)
+        {
+            string query = "SELECT COUNT(Id) FROM [Log] WHERE Id = @_id";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_id", id);
+
+            return DatabaseManager<int>.GetInstance().MakeQueryOneResult(cmd) > 0;
+        }
+
         internal Log? GetLog(long id)
         {
             string query = "SELECT * FROM [Log] WHERE Id = @_id";
@@ -116,7 +126,7 @@ namespace MyFit_API.Repositories
             DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd);
         }
 
-        internal void SetLogIdUser(long id, long idUser)
+        internal void SetLogIdUser(long id, long? idUser)
         {
             string query = "UPDATE [Log] SET IdUser = @_idUser WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
@@ -127,7 +137,7 @@ namespace MyFit_API.Repositories
             DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd);
         }
 
-        internal void SetLogValue(long id, byte value)
+        internal void SetLogValue(long id, byte? value)
         {
             string query = "UPDATE [Log] SET Value = @_value WHERE Id = @_id";
             SqlCommand cmd = new SqlCommand(query);
