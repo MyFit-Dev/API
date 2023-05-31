@@ -12,7 +12,7 @@ namespace MyFit_Libs.Models;
         public string Text { get; set; }
         public string Scope { get; set; }
         public DateTime Date { get; set; }
-        public long IdUtente { get; set; }
+        public long IdUser { get; set; }
         public byte Value { get ; set; }
 
         public Log() {}
@@ -23,7 +23,7 @@ namespace MyFit_Libs.Models;
             Text = text;
             Scope = scope;
             Date = date;
-            IdUtente = idUtente;
+            IdUser = idUtente;
             Value = value;
         }
 
@@ -32,7 +32,7 @@ namespace MyFit_Libs.Models;
             Text = text;
             Scope = scope;
             Date = date;
-            IdUtente = idUtente;
+            IdUser = idUtente;
             Value = value;
         }
     }

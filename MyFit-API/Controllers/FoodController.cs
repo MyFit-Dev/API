@@ -58,6 +58,7 @@ namespace MyFit_API.Controllers
         }
 
         [Route("get")]
+        [HttpGet]
         public IActionResult Get(int id)
         {
             try
