@@ -50,6 +50,10 @@ namespace MyFit_API
             builder.Services.AddSingleton<LogService, LogService>();
             builder.Services.AddSingleton<LogRepository, LogRepository>();
 
+            builder.Services.AddSingleton<MessageController, MessageController>();
+            builder.Services.AddSingleton<MessageService, MessageService>();
+            builder.Services.AddSingleton<MessageRepository, MessageRepository>();
+
         }
 
     }
