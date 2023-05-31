@@ -38,6 +38,18 @@ namespace MyFit_API
             builder.Services.AddSingleton<GenericExerciseService, GenericExerciseService>();
             builder.Services.AddSingleton<GenericExerciseRepository, GenericExerciseRepository>();
 
+            builder.Services.AddSingleton<FoodController, FoodController>();
+            builder.Services.AddSingleton<FoodService, FoodService>();
+            builder.Services.AddSingleton<FoodRepository, FoodRepository>();
+
+            builder.Services.AddSingleton<RecordController, RecordController>();
+            builder.Services.AddSingleton<RecordService, RecordService>();
+            builder.Services.AddSingleton<RecordRepository, RecordRepository>();
+
+            builder.Services.AddSingleton<LogController, LogController>();
+            builder.Services.AddSingleton<LogService, LogService>();
+            builder.Services.AddSingleton<LogRepository, LogRepository>();
+
         }
 
     }
