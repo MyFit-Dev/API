@@ -54,6 +54,10 @@ namespace MyFit_API
             builder.Services.AddSingleton<MessageService, MessageService>();
             builder.Services.AddSingleton<MessageRepository, MessageRepository>();
 
+            builder.Services.AddSingleton<DataRecordController, DataRecordController>();
+            builder.Services.AddSingleton<DataRecordService, DataRecordService>();
+            builder.Services.AddSingleton<DataRecordRepository, DataRecordRepository>();
+            
         }
 
     }
