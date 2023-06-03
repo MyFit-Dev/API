@@ -146,5 +146,14 @@ namespace MyFit_API.Repositories
             DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd);
         }
 
+        internal void DeleteDataRecordByName(string name)
+        {
+            string query = "DELETE FROM [DataRecord] d JOIN Record r ON r.Id = d.IdRecord WHERE r.Name = @_name";
+            SqlCommand cmd = new SqlCommand(query);
+
+            cmd.Parameters.AddWithValue("@_name", name);
+
+            DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd);
+        }
     }
 }
