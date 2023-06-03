@@ -29,5 +29,10 @@ namespace MyFit_Libs.Utils
                    EqualityComparer<Food>.Default.Equals(Food, meal.Food) &&
                    Amount == meal.Amount;
         }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

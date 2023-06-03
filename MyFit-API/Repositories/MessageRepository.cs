@@ -184,7 +184,7 @@ namespace MyFit_API.Repositories
             SqlCommand cmd = new SqlCommand(query);
             cmd.Parameters.AddWithValue("@_idSender", idSender);
 
-            DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd)
+            DatabaseManager<object?>.GetInstance().MakeQueryNoResult(cmd);
         }
 
         internal void DeleteMessagesByRecipient(long idRecipient)
