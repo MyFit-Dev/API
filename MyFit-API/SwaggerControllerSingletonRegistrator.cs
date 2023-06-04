@@ -57,7 +57,18 @@ namespace MyFit_API
             builder.Services.AddSingleton<DataRecordController, DataRecordController>();
             builder.Services.AddSingleton<DataRecordService, DataRecordService>();
             builder.Services.AddSingleton<DataRecordRepository, DataRecordRepository>();
-            
+
+            builder.Services.AddSingleton<StaffController, StaffController>();
+            builder.Services.AddSingleton<StaffService, StaffService>();
+            builder.Services.AddSingleton<StaffRepository, StaffRepository>();
+
+            builder.Services.AddSingleton<StaffTypeController, StaffTypeController>();
+            builder.Services.AddSingleton<StaffTypeService, StaffTypeService>();
+            builder.Services.AddSingleton<StaffTypeRepository, StaffTypeRepository>();
+
+            builder.Services.AddSingleton<PermissionController, PermissionController>();
+            builder.Services.AddSingleton<PermissionService, PermissionService>();
+            builder.Services.AddSingleton<PermissionRepository, PermissionRepository>();
         }
 
     }
