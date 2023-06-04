@@ -9,18 +9,18 @@ public class Permission
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public string Value { get; set; }
+    public byte Value { get; set; }
 
     public Permission() {} 
 
-    public Permission(int id, string name, string value)
+    public Permission(int id, string name, byte value)
     {
         Id = id;
         Name = name;
         Value = value;
     }
 
-    public Permission(string name, string value)
+    public Permission(string name, byte value)
     {
         Name = name;
         Value = value;
